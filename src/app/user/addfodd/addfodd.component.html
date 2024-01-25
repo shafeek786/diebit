@@ -1,0 +1,48 @@
+<section class="body">
+    <div class="dialog-container">
+      <h1>Add Food to Diary</h1>
+      <div class="add-food-container">
+        <div class="search">
+            <span class="search-icon"><i class="fas fa-search"></i></span>
+        <input type="text" class="search-bar" placeholder="Search food..." (input)="onSearch($event)">
+        </div>
+        
+        <div class="tabs">
+          <a  class="tab-link tab-selected" (click)="selectTab('all')" [class.active]="selectedTab === 'all'">All</a>
+          <a  class="tab-link tab-selected" (click)="selectTab('favourite')" [class.active]="selectedTab ==='favourite'">Favourite</a>
+          <a  class="tab-link tab-selected">Common Food</a>
+          <a  class="tab-link tab-selected">Brands</a>
+          <a  class="tab-link tab-selected">Restaurant</a>
+        </div>
+        <div class="tab-content" *ngIf="selectedTab === 'all'">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Energy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="spacer-row"></tr> <!-- Empty row for spacing -->
+                    <tr class="items" *ngFor="let foodItem of foodList" (click)="selectFood(foodItem._id)">
+                        <td>{{ foodItem.name }}</td>
+                        <td>{{ foodItem.energy }}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="food-details" *ngIf="selectedFood">
+            <h2>{{ selectedFood.name }} Details</h2>
+            <p>Energy: {{ selectedFood.energy }}</p>
+            <!-- Add other details as needed -->
+            <button (click)="openFoodDetails()">View Details</button>
+          </div>
+          
+          <div class="tab-content" *ngIf="selectedTab === 'favourite'">
+            <!-- Details for All tab go here. -->
+            <p></p>
+          </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Display</title>
+</head>
+<body>
+
+<!-- Sample blog card -->
+<button class="add-blog-button" [routerLink]="'/trainer/addblog'">Add Blog</button>
+
+<div class="blog-card" *ngFor="let blog of blogs ">
+    <div class="blog-title">{{blog.title}}</div>
+    <div class="blog-content">
+        {{blog.content}}
+    </div>
+    <div class="blog-author">{{blog.author}}</div>
+</div>
+
+<!-- Add more blog cards as needed -->
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+<section >
+    <mat-drawer-container class="mContainer">
+        <mat-drawer mode="side" opened="true" class="mat-drawer">
+            <app-trainer-sidebar (onToggleSideNav)="onToggleSideNav($event)"></app-trainer-sidebar>
+        </mat-drawer>
+        <mat-drawer-content>
+            <app-trainer-header></app-trainer-header>
+            <app-trainer-body
+                [collapsed]="isSideNavCollapsed"
+                [screenWidth]="screenWidth"
+            ></app-trainer-body>
+            <app-admin-footer></app-admin-footer>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</section>

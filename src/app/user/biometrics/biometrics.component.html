@@ -1,0 +1,39 @@
+<section class="main">
+    <div>
+      <h3>Update your profile</h3>
+      <form [formGroup]="updateFrofileForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <!-- Replace 'text' input with a dropdown for gender -->
+          <select class="form-control" formControlName="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <!-- Add other gender options as needed -->
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <!-- Replace 'text' input with a date picker for DOB -->
+          <input type="date" class="form-control" formControlName="dob">
+        </div>
+  
+        <div class="form-group">
+          <label for="height">Height (in cm):</label>
+          <!-- Replace 'text' input with an input for height -->
+          <input type="number" class="form-control" formControlName="height">
+        </div>
+  
+        <div class="form-group">
+          <label for="weight">Weight (in kg):</label>
+          <!-- Replace 'text' input with an input for weight -->
+          <input type="number" class="form-control" formControlName="weight">
+        </div>
+  
+        <!-- ... existing form fields ... -->
+  
+        <button class="primary-btn" type="submit">Update</button>
+      </form>
+    </div>
+  </section>
+  

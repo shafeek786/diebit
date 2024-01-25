@@ -1,0 +1,89 @@
+/* trainer-dashboard.component.css */
+.weight-update-link {
+    display: inline-block;
+    padding: 30px;
+    text-decoration: none;
+    color: #262727; /* Link color */
+    cursor: pointer;
+  }
+
+  
+  .merged-history {
+    margin-left: 20px;
+  }
+  .weight-update-link:hover {
+    color: #1a8a0b; /* Hover color */
+  }
+  
+  .weight-update-link i {
+    margin-right: 10px;
+    font-size: 25px ;
+  }
+
+  .update {
+    font-size: 30px;
+  }
+  
+  .merged-history {
+    margin-top: 10px;
+    min-height: 25vh;
+    margin-left: 35px;
+   
+  }
+
+  .food-history h3 {
+    color: #484949;
+    font-size: 20px;
+  }
+  
+  .food-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 5px;
+   
+  }
+  
+  .food-item span {
+    text-align: right;
+    flex: 1;
+    text-align: center;
+  }
+  .col-md-6 span {
+    text-align: left;
+    color: #2f7979;
+    font-size: 16px;
+    margin-right: 45px; 
+  }
+
+
+  .chart-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; 
+    padding: 0 60vh 0 20vh;
+  }
+  
+  .chart {
+    width: 75%; 
+    margin-right: 10px;
+  }
+  .chart:last-child {
+    margin-right: 0; /* Remove margin from the last chart to avoid extra space */
+  }
+
+  .calender {
+    margin-left: 10vh;
+  }
+  .col-md-2 {
+    width: 125px;
+    margin-left: 10vh;
+  }
+
+
+  .merged-history .list-group-item button {
+   display: flex;
+    width:40px;
+    align-items: center;
+  }
+ 

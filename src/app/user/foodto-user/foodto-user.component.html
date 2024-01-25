@@ -1,0 +1,38 @@
+<form [formGroup]="addFoodForm" (ngSubmit)="addFood()">
+  <div class="container">
+    <div class="chart-container">
+      <p>Macronutrient Distribution</p>
+      <div class="chart" [chart]="doughnutChart"></div>
+    </div>
+
+    <div class="controls-container">
+      <div class="label-container">
+        <div class="input-group">
+          <label for="quantity" class="label">Serving Quantity:</label>
+        </div>
+
+        <div class="input-group">
+          <label for="size" class="label">Serving Size:</label>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <div class="input-group">
+          <input type="text" id="quantity" name="quantity" class="quantity-input" placeholder="Enter quantity" formControlName="quantity">
+        </div>
+
+        <div class="input-group">
+          <select id="size" class="quantity-select" [(ngModel)]="selectedSize" formControlName="size" (change)="updateChart($event)">
+            <option value="3">3g</option>
+            <option value="10">10g</option>
+            <option value="50">50g</option>
+            <option value="100">100g</option>
+            <option value="15">15g</option>
+            <option value="200">200g</option>
+          </select>
+        </div>
+        <button type="submit" class="add-food-button">Add Food</button>
+      </div>
+    </div>
+  </div>
+</form>

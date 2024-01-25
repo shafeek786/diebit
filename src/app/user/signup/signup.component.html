@@ -1,0 +1,89 @@
+<header class="header-sign">
+    <div class="container">
+        <div class="logo">
+            <a href="./index.html">
+                <img src="assets/img/logo.png" alt="">
+            </a>
+        </div>
+        
+        <div id="mobile-menu-wrap"></div>
+    </div>
+</header>
+
+<!-- ... (your header code) ... -->
+
+<section class="main">
+    <div>
+        <h3>Create your free account</h3>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="">Name:</label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+            <span *ngIf="signupForm.get('name')?.touched && !signupForm.get('name')?.valid">
+                <span *ngIf="signupForm.get('name')?.errors?.['nameIsForbidden']">
+                    This name is invalid
+                  </span>
+                  <span *ngIf="signupForm.get('name')?.errors?.['required']" >
+                    Please enter name
+                  </span>
+            </span>
+            
+            <div class="form-group">
+                <label for="">E-mail:</label>
+                <input type="text" class="form-control" formControlName="email" id="email">
+                <span *ngIf="signupForm.get('email')?.touched">
+                    <span *ngIf="signupForm.get('email')?.hasError('email')">
+                      Please enter a valid email address
+                    </span>
+                    <span *ngIf="signupForm.get('email')?.hasError('required')">
+                      Please enter an email address
+                    </span>
+                  </span>
+            </div>
+          
+            <div class="form-group">
+                <label for="">Mobile Number</label>
+                <input type="text" class="form-control" formControlName="mobileNumber">
+                <span *ngIf="signupForm.get('mobileNumber')?.touched">
+                    <span *ngIf="signupForm.get('mobileNumber')?.hasError('pattern')">
+                      Please enter a valid mobile number
+                    </span>
+                    <span *ngIf="signupForm.get('mobileNumber')?.hasError('required')">
+                      Please enter mobile number address
+                    </span>
+                  </span>
+            </div>
+           
+            <div class="form-group">
+                <label for="">Password:</label>
+                <input type="password" class="form-control" formControlName="password">
+                <span *ngIf="signupForm.get('password')?.touched">
+                  <span *ngIf="signupForm.get('password')?.hasError('minlength')">
+                    Password must be at least 6 characters long
+                </span>
+                    <span *ngIf="signupForm.get('password')?.hasError('required')">
+                      Please enter password
+                    </span>
+                  </span>
+            </div>
+            
+            <div class="form-group">
+                <label for="">Confirm Password:</label>
+                <input type="password" class="form-control" formControlName="confirmPassword">
+                <span *ngIf="signupForm.get('confirmPassword')?.touched">
+                    <span *ngIf="signupForm.hasError('passwordMismatch')">
+                      Please do not match
+                    </span>
+                    <span *ngIf="signupForm.get('confirmPassword')?.hasError('required')">
+                      Please enter confirm password
+                    </span>
+                  </span>
+            </div>
+          
+            
+            <button class="primary-btn" type="submit" >Signup</button>
+        </form>
+    </div>
+</section>
+

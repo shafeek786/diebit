@@ -1,0 +1,106 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    height: 50vb;
+}
+  
+.add-food-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dialog-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 90vh; /* Increase the height as needed */
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    width: 120%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+.search {
+    position: relative;
+    margin-bottom: 15px; /* Adjusted space between search and tabs */
+}
+
+.search-bar {
+    width: calc(100% - 40px);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 50px; /* Make space for the icon */
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px; /* Adjusted left position */
+    font-size: 25px;
+    transform: translateY(-50%);
+    color: #555;
+}
+
+.tabs {
+    margin-top: 15px; /* Adjusted space between tabs */
+
+}
+
+.tab-link {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    margin: 0 5px; /* Adjusted space between tabs */
+    font-size: 20px;
+    color: #2a3b32;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Remove default link underline */
+}
+
+.tab-link:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+}
+
+.tab-selected:active {
+    border-bottom: 2px solid orange; /* Orange underline for selected tab */
+}
+
+.tab-content {
+    margin-top: 15px;
+    font-size: 20px;
+}
+.tab-content th {
+    margin-bottom: 30px; /* Adjusted margin-bottom to increase space between header and items */
+    font-size: 20px;
+}
+
+.tab-content td {
+    cursor: pointer;
+    font-size: 20px;
+    color: #666565;
+    padding-bottom: 15px;
+    padding-right: 200px;
+}
+
+tbody {
+    margin-top: 50px;
+}
+
+.tab-content .spacer-row {
+    height: 20px; /* Adjusted height to increase space between header and items */
+}
+

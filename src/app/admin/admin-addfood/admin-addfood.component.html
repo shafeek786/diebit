@@ -1,0 +1,117 @@
+<!-- admin-addfood.component.html -->
+<form class="food-form" [formGroup]="foodForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <h2>Nutritional Information (/100g)</h2>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name">
+
+    <label for="category">Category:</label>
+    <select id="category" formControlName="category">
+      <option value="fruits">Fruits</option>
+      <option value="vegetables">Vegetables</option>
+      <option value="dry-fruits">Dry Fruits</option>
+      <option value="nuts">Nuts</option>
+      <option value="grains">Grains</option>
+      <option value="soft-drinks">Soft Drinks</option>
+      <option value="alcohol">Alcohol</option>
+      <option value="dairy">Dairy</option>
+      
+    </select>
+
+    <label for="energy">Energy (kcal):</label>
+    <input type="text" id="energy" formControlName="energy">
+
+    <label for="carbohydrate">Carbohydrate (g):</label>
+    <input type="text" id="carbohydrate" formControlName="carbohydrate">
+
+    <label for="fiber">Fiber (g):</label>
+    <input type="text" id="fiber" formControlName="fiber">
+
+    <label for="sugar">sugar (g):</label>
+    <input type="text" id="sugar" formControlName="sugar">
+
+    <label for="protein">Protein (g):</label>
+    <input type="text" id="protein" formControlName="protein">
+
+    <label for="fat">Fat (g):</label>
+    <input type="text" id="fat" formControlName="fat">
+  </div>
+<div formArrayName="vitamins">
+  <div class="form-group">
+   
+
+  <div class="form-columns">
+    <div class="form-column">
+      <h2>Vitamins</h2>
+
+      <label for="a">A(mg):</label>
+      <input type="text" id="a" formControlName="a">
+
+      <label for="b1">B1:</label>
+      <input type="text" id="b1" formControlName="b1">
+
+      <label for="b2">B2:</label>
+      <input type="text" id="b2" formControlName="b2">
+
+      <label for="b3">B3:</label>
+      <input type="text" id="b3" formControlName="b3">
+
+      <label for="b5">B5:</label>
+      <input type="text" id="b5" formControlName="b5">
+
+      <label for="b6">B6:</label>
+      <input type="text" id="b6" formControlName="b6">
+
+      <label for="b9">B9:</label>
+      <input type="text" id="b9" formControlName="b9">
+
+      <label for="b12">B12:</label>
+      <input type="text" id="b12" formControlName="b12">
+
+      <label for="c">C:</label>
+      <input type="text" id="c" formControlName="c">
+
+      <label for="d">D:</label>
+      <input type="text" id="d" formControlName="d">
+
+      <label for="e">E:</label>
+      <input type="text" id="e" formControlName="e">
+
+      <label for="biotin">Biotin:</label>
+      <input type="text" id="biotin" formControlName="vitamins.biotin">
+      </div>
+    </div>
+  </div>
+</div>
+  <div formArrayName="minerals">
+    <div class="form-group">
+    <div class="form-column">
+      <h2>Minerals</h2>
+
+      <label for="calcium">Calcium:</label>
+      <input type="text" id="calcium" formControlName="calcium">
+
+      <label for="iron">Iron:</label>
+      <input type="text" id="iron" formControlName="iron">
+
+      <label for="zinc">Zinc:</label>
+      <input type="text" id="zinc" formControlName="zinc">
+
+      <label for="magnesium">Magnesium:</label>
+      <input type="text" id="magnesium" formControlName="magnesium">
+
+      <label for="copper">Copper:</label>
+      <input type="text" id="copper" formControlName="copper">
+
+      <label for="chromium">Chromium:</label>
+      <input type="text" id="chromium" formControlName="chromium">
+
+      <label for="potassium">Potassium:</label>
+      <input type="text" id="potassium" formControlName="potassium">
+    </div>
+  </div>
+</div>
+
+  <button type="submit">Submit</button>
+</form>
