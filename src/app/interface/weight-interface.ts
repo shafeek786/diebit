@@ -1,14 +1,12 @@
 export interface weight {
     id:string
     weight:number
+    date:string
+    unit:string
 }
 
 export interface WeightHistoryData{
-    todayWeightHistory: WeightHistory[]
+    todayWeightHistory: weight[]
 }
 
-export interface WeightHistory{
-    weight:number
-    date:string
-}
 

@@ -2,13 +2,18 @@
   <div style="display: block">
     <a class="weight-update-link" (click)="updateWeight()">
       <i class="fa-solid fa-heart-pulse"></i>
-      <span style="font-size: 20px">Update Weight</span>
+      <span style="font-size: 20px">WEIGHT</span>
     </a>
     <a class="weight-update-link" (click)="addFood()">
       <i class="fa-solid fa-apple-whole"></i>
-      <span style="font-size: 20px">Add Food</span>
+      <span style="font-size: 20px">FOOD</span>
+    </a>
+    <a class="weight-update-link" (click)="addFood()">
+      <i class="fa-solid fa-person-walking"></i>
+      <span style="font-size: 20px">EXERCISE</span>
     </a>
   </div>
+  
   <div class="calender">
     <div class="input-group">
       <a class="btn btn-outline-secondary" (click)="changeDate(-1)">
@@ -37,7 +42,8 @@
 
   <div class="merged-history">
     <h3 *ngIf="mergedData.length === 0">Merged History is empty</h3>
-    <ul class="list-group" *ngIf="dailyFoodHistory.length > 0">
+    <ul class="list-group" *ngIf="dailyFoodHistory.length > 0 || weightHistory.length 
+      > 0">
       <li *ngFor="let entry of mergedData" class="list-group-item">
         <div class="row align-items-center">
           <div class="col-md-6">
@@ -61,7 +67,7 @@
             <button (click)="removeFoodMergedEntry(entry._id)" *ngIf="entry.type === 'food'" class="btn btn-danger">
               <i class="fa-solid fa-times"></i>
             </button>
-            <button (click)="removeWeightMergedEntry(entry)" *ngIf="entry.type === 'weight'" class="btn btn-danger">
+            <button (click)="removeWeightMergedEntry(entry._id)" *ngIf="entry.type === 'weight'" class="btn btn-danger">
               <i class="fa-solid fa-times"></i>
             </button>
           </div>

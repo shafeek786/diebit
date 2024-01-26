@@ -1,20 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FoodHistory } from './interface/food-interface';
-interface foodHistory{
-  name:string,
-  quantity:number,
-  size:number,
-  calories:number
-}
+import { weight } from './interface/weight-interface';
+import { foodHistory } from './interface/food-interface';
 
 interface userData {
   name:string,
   weight:number
 }
-interface weight{
-  weight: number
-}
+
 @Injectable({
   providedIn: 'root'
 })

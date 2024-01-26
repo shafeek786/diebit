@@ -14,5 +14,8 @@ export interface foodHistory{
     quantity:number,
     size:number,
     calories:number
-    Date:Date
+    date:string,
+    fat:number,
+    protein: number,
+    carbohydrates:number
 }

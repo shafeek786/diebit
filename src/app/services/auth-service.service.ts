@@ -156,5 +156,12 @@ removeFoodEntry(entryId:string): Observable<FoodHistory>{
   return this.http.get<FoodHistory>(this.apiUrl+'/deletefoodentry',{ params })
 }
 
+removeWightEntry(userId:string,enrtyId:string,selectedDate:Date): Observable<WeightHistoryData>{
+  console.log("selected date: "+selectedDate)
+  const dateString = selectedDate.toISOString()
+  const params = new HttpParams().set('userId', String(userId)).set('entryId',enrtyId).set('selectedDate',dateString)
+  return this.http.get<WeightHistoryData>(this.apiUrl+'/deleteweightentry', { params})
+
+}
 }
 

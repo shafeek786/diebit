@@ -70,7 +70,10 @@ import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TrainerBlogsComponent } from './trainer/trainer-blogs/trainer-blogs.component';
 import { TrainerAddBlogComponent } from './trainer/trainer-add-blog/trainer-add-blog.component';
-import { UserBlogsComponent } from './user/user-blogs/user-blogs.component'
+import { UserBlogsComponent } from './user/user-blogs/user-blogs.component';
+import { AddWorkoutComponent } from './add-workout/add-workout.component';
+import { WorkoutListComponent } from './workout-list/workout-list.component'
+import { DialogModule } from '@syncfusion/ej2-angular-popups';
 
 @NgModule({
   declarations: [
@@ -122,7 +125,9 @@ import { UserBlogsComponent } from './user/user-blogs/user-blogs.component'
     FoodtoUserComponent,
     TrainerBlogsComponent,
     TrainerAddBlogComponent,
-    UserBlogsComponent
+    UserBlogsComponent,
+    AddWorkoutComponent,
+    WorkoutListComponent
   ],
   imports: [
     BrowserModule,
@@ -145,7 +150,8 @@ import { UserBlogsComponent } from './user/user-blogs/user-blogs.component'
     ChartModule,
     HighchartsChartModule,
     FormsModule,
-    BsDatepickerModule
+    BsDatepickerModule,
+    DialogModule
 
   ],
   providers: [],

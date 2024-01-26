@@ -36,7 +36,11 @@ export class WeightupdateComponent implements OnInit {
     }
 
     const dec: id = jwtDecode(localStorage.getItem('token') as string);
-    this.service.updateWeight({ id: dec.id, weight: this.weightForm.value }).subscribe((res: any) => {
+    this.service.updateWeight({
+      id: dec.id, weight: this.weightForm.value,
+      date: '',
+      unit: ''
+    }).subscribe((res: any) => {
       const weight = res.todayWeightRecord;
       const userData = res.userData;
       this.sharedService.updateWeight(weight);
