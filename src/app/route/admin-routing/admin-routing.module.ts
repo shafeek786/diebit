@@ -10,6 +10,9 @@ import { adminauthGuard } from 'src/app/guards/adminauth.guard';
 import { AdminTrainersComponent } from 'src/app/admin/admin-trainers/admin-trainers.component';
 import { AdminAddfoodComponent } from 'src/app/admin/admin-addfood/admin-addfood.component';
 import { AdminFoodComponent } from 'src/app/admin/admin-food/admin-food.component';
+import { AddPlanComponent } from 'src/app/admin/add-plan/add-plan.component';
+import { ManagePlanComponent } from 'src/app/admin/manage-plan/manage-plan.component';
+import { EditPlanComponent } from 'src/app/admin/edit-plan/edit-plan.component';
 
 const adminRoutes:Routes = [
   { path:'admin/login', component:AdminLoginComponent,canActivate:[adminloginGuard]},
@@ -20,10 +23,11 @@ const adminRoutes:Routes = [
       { path:'trainer', component:AdminTrainersComponent},
       { path: 'users', component:AdminUsersComponent},
       { path:'addfood', component:AdminAddfoodComponent},
-      { path:'food', component:AdminFoodComponent}
+      { path:'food', component:AdminFoodComponent},
+      { path:'addplan', component:AddPlanComponent},
+      { path:'manageplans', component:ManagePlanComponent},
+      { path:'editplan/:id', component:EditPlanComponent}
     ]},
-  
- 
 ]
 
 @NgModule({

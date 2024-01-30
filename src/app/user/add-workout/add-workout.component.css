@@ -1,0 +1,25 @@
+/* calories-form.component.css */
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  select, input {
+    margin-bottom: 10px;
+    padding: 8px;
+  }
+  
+  button {
+    background-color: #4f8f86;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+  }
+  

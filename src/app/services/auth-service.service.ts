@@ -8,7 +8,8 @@ import { Food, FoodHistory, foodHistory } from '../interface/food-interface';
 import { WeightHistoryData, weight } from '../interface/weight-interface';
 import { OtpData, ResendOtp, ResetPassword, TokenData, UpdateProfileData, UserId, UserSignupData } from '../interface/user-interface';
 import { loginData } from '../interface/trainer-interface';
-import { ApiResponse } from '../interface/admin-interface';
+import { ApiResponse, userId } from '../interface/admin-interface';
+import { WorkoutHistory, workout } from '../interface/workout-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -151,17 +152,40 @@ getWeightHistoryTracker(id:string):Observable<WeightHistoryData>{
   );
 }
 
-removeFoodEntry(entryId:string): Observable<FoodHistory>{
-  const params = new HttpParams().set('id', String(entryId))
+removeFoodEntry(userId:string,entryId:string,selectedDate:Date): Observable<FoodHistory>{
+  const dateString = selectedDate.toISOString()
+  const params = new HttpParams().set('userId', String(userId)).set('entryId', String(entryId)).set('selectedDate',dateString)
   return this.http.get<FoodHistory>(this.apiUrl+'/deletefoodentry',{ params })
 }
 
 removeWightEntry(userId:string,enrtyId:string,selectedDate:Date): Observable<WeightHistoryData>{
   console.log("selected date: "+selectedDate)
   const dateString = selectedDate.toISOString()
-  const params = new HttpParams().set('userId', String(userId)).set('entryId',enrtyId).set('selectedDate',dateString)
+  const params = new HttpParams().set('userId', String(userId)).set('entryId',String(enrtyId)).set('selectedDate',dateString)
   return this.http.get<WeightHistoryData>(this.apiUrl+'/deleteweightentry', { params})
 
+}
+
+removeWorkoutEntry(userId:string,entryId:string, selectedDate:Date):Observable<WorkoutHistory>{
+  const dateString = selectedDate.toISOString()
+  const params = new HttpParams().set('userId',userId).set('entryId', entryId).set('seletedDate', dateString)
+  return this.http.get<WorkoutHistory>(this.apiUrl+'/removeworkout',{ params })
+}
+
+addWorkout(userId:string,workoutData:workout): Observable<WorkoutHistory>{
+  console.log(userId)
+  return this.http.post<WorkoutHistory>(this.apiUrl+'/addworkout',{userId:userId,workoutData})
+}
+
+getWorkoutHistory(userId:string): Observable<WorkoutHistory>{
+  const params = new HttpParams().set('userId', String(userId))
+  return this.http.get<WorkoutHistory>(this.apiUrl+'/getworkouthistory',{ params })
+}
+getWorkoutHistoryWithDate(userId:string,date:Date):Observable<WorkoutHistory>{
+  console.log("dfghdjkghd workout date")
+  const dateString = date.toISOString();
+  const params = new HttpParams().set('userId', String(userId)).set('date',dateString)
+  return this.http.get<WorkoutHistory>(this.apiUrl+'/getworkouthistory',{ params })
 }
 }
 

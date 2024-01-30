@@ -71,9 +71,13 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TrainerBlogsComponent } from './trainer/trainer-blogs/trainer-blogs.component';
 import { TrainerAddBlogComponent } from './trainer/trainer-add-blog/trainer-add-blog.component';
 import { UserBlogsComponent } from './user/user-blogs/user-blogs.component';
-import { AddWorkoutComponent } from './add-workout/add-workout.component';
-import { WorkoutListComponent } from './workout-list/workout-list.component'
+import { AddWorkoutComponent } from './user/add-workout/add-workout.component'; 
+import { WorkoutListComponent } from './user/workout-list/workout-list.component'
 import { DialogModule } from '@syncfusion/ej2-angular-popups';
+import { AddPlanComponent } from './admin/add-plan/add-plan.component';
+import { ManagePlanComponent } from './admin/manage-plan/manage-plan.component';
+import { EditPlanComponent } from './admin/edit-plan/edit-plan.component';
+import { SubscriptionComponent } from './user/subscription/subscription.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +131,11 @@ import { DialogModule } from '@syncfusion/ej2-angular-popups';
     TrainerAddBlogComponent,
     UserBlogsComponent,
     AddWorkoutComponent,
-    WorkoutListComponent
+    WorkoutListComponent,
+    AddPlanComponent,
+    ManagePlanComponent,
+    EditPlanComponent,
+    SubscriptionComponent
   ],
   imports: [
     BrowserModule,

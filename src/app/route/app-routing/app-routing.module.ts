@@ -14,6 +14,7 @@ import { LoginComponent } from 'src/app/user/login/login.component';
 import { OtpComponent } from 'src/app/user/otp/otp.component';
 import { ResetpasswordComponent } from 'src/app/user/resetpassword/resetpassword.component';
 import { SignupComponent } from 'src/app/user/signup/signup.component';
+import { SubscriptionComponent } from 'src/app/user/subscription/subscription.component';
 import { TrackerComponent } from 'src/app/user/tracker/tracker.component';
 import { UserBlogsComponent } from 'src/app/user/user-blogs/user-blogs.component';
 import { UserDashboardComponent } from 'src/app/user/user-dashboard/user-dashboard.component';
@@ -34,7 +35,8 @@ const routes: Routes =  [
     { path:'body', component:DashboardComponent, canActivate:[authGuard]},
     { path: 'tracker', component:TrackerComponent, canActivate:[authGuard]},
     { path:'food', component:FoodtoUserComponent,canActivate:[authGuard]},
-    { path:'blogs',component:UserBlogsComponent, canActivate:[authGuard]}
+    { path:'blogs',component:UserBlogsComponent, canActivate:[authGuard]},
+    { path:'subscription', component:SubscriptionComponent, canActivate:[authGuard]}
   ]},
   { path: 'otp', component:OtpComponent},
   { path: 'forgotpassword', component:ForgetPasswordComponent},

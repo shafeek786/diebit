@@ -11,15 +11,16 @@ import { WeightupdateComponent } from '../weightupdate/weightupdate.component';
 import { AddfoddComponent } from '../addfodd/addfodd.component';
 import { Chart } from 'chart.js/auto';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-import { SharedcaloriesService } from '../../services/sharedcalories.service';
+
 import { SharedCaloriesService } from 'src/app/shared-calories.service';
-import { forkJoin, combineLatest } from 'rxjs';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { FoodHistory,foodHistory } from 'src/app/interface/food-interface';
+import { FoodHistory, foodHistory } from 'src/app/interface/food-interface';
 import { WeightHistoryData, weight } from 'src/app/interface/weight-interface';
-import { weight as WeightInterface } from 'src/app/interface/weight-interface';
-import { userId } from '../../interface/admin-interface';
-import { DialogModule } from '@syncfusion/ej2-angular-popups';
+import { WorkoutListComponent } from 'src/app/user/workout-list/workout-list.component';
+import { WorkoutHistory, workout } from '../../interface/workout-interface';
+import { PlanserviceService } from 'src/app/services/planservice.service';
+import { SubscriptionStatus } from 'src/app/interface/plan-interface';
+import { isSubscription } from 'rxjs/internal/Subscription';
 interface tokenData {
   id: string;
   name: string;
@@ -39,9 +40,6 @@ interface userData {
   weight: number;
 }
 
-
-
-
 @Component({
   selector: 'app-tracker',
   templateUrl: './tracker.component.html',
@@ -57,35 +55,44 @@ export class TrackerComponent implements OnInit {
   user!: userData;
   age: number = 0;
   consumedCalories!: number;
+  burnedCalories!: number;
   dailyFoodHistory: foodHistory[] = [];
   weightHistory: weight[] = [];
+  WorkoutHistory: workout[] = [];
   mergedData: any[] = [];
-closeIcon: any;
+  closeIcon: any;
+  isSusbscribed!:boolean
+  bmr!:number
   constructor(
     private sharedService: SharedCaloriesService,
     private dialog: MatDialog,
     private service: AuthServiceService,
     private cdr: ChangeDetectorRef,
-    private zone: NgZone
+    private planService: PlanserviceService
   ) {
     this.bsConfig = {
       dateInputFormat: 'DD-MM-YYYY',
     };
   }
 
-  ngOnInit(): void {
+   ngOnInit():void {
     this.decodedToken = jwtDecode(localStorage.getItem('token') as string);
     this.email = this.decodedToken.email;
-    this.getFormattedDate();
+    this.planService.checkSubscription(this.decodedToken.id).subscribe((res:SubscriptionStatus)=>{
+      this.isSusbscribed = res.isActive
+      console.log("check"+ res.isActive)
 
+      console.log("subscription: "+this.isSusbscribed)
+    })
+    this.getFormattedDate();
     this.getUser();
-    console.log('heloooooo');
+    
+    console.log("subscription: "+this.isSusbscribed)
     this.service
       .getUsrFoodHistory(this.decodedToken.id)
-      .subscribe((res: any) => {
+      .subscribe((res: FoodHistory) => {
         this.consumedCalories = res.todayCalorieIntake;
         this.dailyFoodHistory = res.foodHistory;
-        console.log('test' + res.foodHistory);
         this.consumeCalories();
         this.calculateBMR();
         this.cdr.detectChanges();
@@ -99,6 +106,14 @@ closeIcon: any;
         this.calculateBMR();
         this.consumeCalories();
         this.updateMergedData();
+        this.cdr.detectChanges();
+      });
+
+    this.service
+      .getWorkoutHistory(this.decodedToken.id)
+      .subscribe((res: WorkoutHistory) => {
+        this.WorkoutHistory = res.workoutHistory;
+        this.burnedCalories = res.burnedCalories;
         this.cdr.detectChanges();
       });
 
@@ -123,6 +138,20 @@ closeIcon: any;
       this.cdr.detectChanges();
     });
 
+    this.sharedService.burnedCalories$.subscribe((burnedCalories: number) => {
+      this.burnedCalories = burnedCalories;
+     
+      this.cdr.detectChanges();
+      this.createChart2();
+    });
+    this.sharedService.workoutHistory$.subscribe(
+      (WorkoutHistory: workout[]) => {
+        this.WorkoutHistory = WorkoutHistory;
+        this.updateMergedData();
+        this.cdr.detectChanges();
+      }
+    );
+
     this.sharedService.userData$.subscribe((userData: any) => {
       this.user = userData;
       this.consumeCalories();
@@ -131,6 +160,13 @@ closeIcon: any;
     });
   }
 
+  checkSubscription(){
+    this.planService.checkSubscription(this.decodedToken.id).subscribe((res:SubscriptionStatus)=>{
+      console.log("check"+ res.isActive)
+      this.isSusbscribed = res.isActive
+      console.log(this.isSusbscribed)
+    })
+  }
   getFormattedDate(): string {
     const today = new Date();
     const selected = new Date(this.selectedDate);
@@ -142,7 +178,6 @@ closeIcon: any;
     ) {
       return 'Today';
     } else {
-      // Format the date as per your requirement
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return this.selectedDate.toLocaleDateString();
     }
@@ -154,7 +189,6 @@ closeIcon: any;
       this.selectedDate.getMonth(),
       this.selectedDate.getDate() + offset
     );
-    console.log(this.selectedDate);
     this.service
       .getFoodHistorywithDate(this.decodedToken.id, this.selectedDate)
       .subscribe((res: any) => {
@@ -177,43 +211,74 @@ closeIcon: any;
         this.updateMergedData();
         this.cdr.detectChanges();
       });
+
+    this.service
+      .getWorkoutHistoryWithDate(this.decodedToken.id, this.selectedDate)
+      .subscribe((res: WorkoutHistory) => {
+        this.WorkoutHistory = res.workoutHistory;
+        this.burnedCalories = res.burnedCalories;
+        this.updateMergedData();
+        this.cdr.detectChanges();
+      });
   }
 
   updateMergedData() {
-    console.log('weight:' + this.weightHistory);
-    console.log('food: ' + this.dailyFoodHistory);
-    const mergedData = [...this.dailyFoodHistory, ...this.weightHistory];
+  
+    const mergedData = [
+      ...this.dailyFoodHistory,
+      ...this.weightHistory,
+      ...this.WorkoutHistory,
+    ];
     mergedData.sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
 
     this.mergedData = mergedData;
-    console.log('mergedData: ' + this.mergedData);
+   
   }
 
-  removeFoodMergedEntry(id: string) {
-    this.service.removeFoodEntry(id).subscribe((res: FoodHistory) => {
-      this.dailyFoodHistory = res.foodHistory;
-    });
+  removeFoodMergedEntry(entryId: string) {
+    const userId = this.decodedToken.id;
+    const selectedDate = this.selectedDate;
+    this.service
+      .removeFoodEntry(userId, entryId, selectedDate)
+      .subscribe((res: FoodHistory) => {
+        this.dailyFoodHistory = res.foodHistory;
+        this.createChart(this.bmr,res.todayCalorieIntake)
+        this.updateMergedData();
+        this.cdr.detectChanges();
+      });
   }
 
-  removeWeightMergedEntry(entryId:string ) {
-    console.log(entryId)
-    const userId = this.decodedToken.id
-    const selectedDate = this.selectedDate
-    this.service.removeWightEntry(userId,entryId,selectedDate).subscribe((res:WeightHistoryData)=>{
-      this.weightHistory = res.todayWeightHistory;
-      this.getUser();
-      this.updateMergedData();
-      
-      this.cdr.detectChanges();
-    })
+  removeWeightMergedEntry(entryId: string) {
+    const userId = this.decodedToken.id;
+    const selectedDate = this.selectedDate;
+    this.service
+      .removeWightEntry(userId, entryId, selectedDate)
+      .subscribe((res: WeightHistoryData) => {
+        this.weightHistory = res.todayWeightHistory;
+        this.calculateBMR()
+        this.updateMergedData();
+        this.cdr.detectChanges();
+      });
+  }
 
+  removeWorkoutMergedEntry(entryId: string) {
+    const userId = this.decodedToken.id;
+    const selectedDate = this.selectedDate;
+    this.service
+      .removeWorkoutEntry(this.decodedToken.id, entryId, selectedDate)
+      .subscribe((res: WorkoutHistory) => {
+        this.burnedCalories = res.burnedCalories;
+        this.WorkoutHistory = res.workoutHistory;
+        this.createChart2();
+        this.updateMergedData();
+        this.cdr.detectChanges();
+      });
   }
 
   getUser() {
     this.service.getUser(this.decodedToken.id).subscribe((res: any) => {
-      console.log(res);
       const typedResponse = res as ApiResponse;
       this.user = typedResponse.userData;
 
@@ -231,7 +296,6 @@ closeIcon: any;
   }
 
   calculateAge() {
-    console.log(this.user);
     if (this.user && this.user.dateOfBirth) {
       const dateOfBirth = new Date(this.user.dateOfBirth);
       const today = new Date();
@@ -248,17 +312,16 @@ closeIcon: any;
   }
 
   calculateBMR() {
-    const bmr = this.calculateBMRValue(
+     this.bmr = this.calculateBMRValue(
       this.user.gender,
       this.user.weight,
       this.user.height,
       this.age
     );
     const cal: number = this.consumedCalories || 0;
-    console.log(this.user.weight);
 
     setTimeout(() => {
-      this.createChart(bmr, cal);
+      this.createChart(this.bmr, cal);
       this.cdr.detectChanges();
     });
   }
@@ -287,7 +350,6 @@ closeIcon: any;
       enterAnimationDuration: '500ms',
       exitAnimationDuration: '500ms',
     });
-    console.log(this.email);
   }
 
   addFood() {
@@ -298,6 +360,13 @@ closeIcon: any;
     });
   }
 
+  workoutList() {
+    this.dialog.open(WorkoutListComponent, {
+      width: '100%',
+      enterAnimationDuration: '500ms',
+      exitAnimationDuration: '500ms',
+    });
+  }
   destroyChart() {
     const ctx = document.getElementById('roundChart') as HTMLCanvasElement;
     const chart = Chart.getChart(ctx);
@@ -330,7 +399,6 @@ closeIcon: any;
   }
   createChart(BMR: number, consumedCal: number): void {
     this.destroyChart();
-    console.log(consumedCal);
     let protein = 0;
     let fat = 0;
     let carbs = 0;
@@ -488,13 +556,14 @@ closeIcon: any;
     const roundChart2 = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ['BMR', 'Activity'],
+        labels: ['BMR', 'Exercise', 'Activity'],
         datasets: [
           {
-            data: [bmr, activity],
+            data: [bmr, this.burnedCalories, activity],
             backgroundColor: [
               'rgba(186, 59, 206, 0.8)',
               'rgba(31, 170, 102, 0.8)',
+              'rgba(201, 178, 46, 1)',
             ],
           },
         ],

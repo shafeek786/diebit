@@ -7,19 +7,19 @@ export const navbarData = [
     },
     {
         routeLink : '/admin/trainer',
-        icon : 'fal fa-box-open',
+        icon : 'fa-solid fa-person-chalkboard',
         label: "Manage Trainer"
 
     },
     {
         routeLink : '/admin/users',
-        icon : 'fal fa-home',
+        icon : 'fa-regular fa-user',
         label: "Manage Users"
 
     },
     {
         routeLink : '/admin/food',
-        icon : 'fal fa-tags',
+        icon : 'fa-solid fa-utensils',
         label: "Food Items"
 
     },

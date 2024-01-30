@@ -2,8 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { loginData,userId, trainerId, ApiResponse } from '../interface/admin-interface';
+import { loginData,userId, trainerId, ApiResponse, Response } from '../interface/admin-interface';
 import { Food } from '../interface/food-interface';
+import { Plan, PlanData } from '../interface/plan-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -89,4 +90,11 @@ export class AdminAuthService {
     return this.http.post(this.apiUrl+'/addfood',data)
   }
 
+  addPlan(data:string): Observable<Response>{
+    console.log(data)
+    return this.http.post<Response>(this.apiUrl+'/addplan', data)
+  }
+  getPlan():Observable<PlanData>{
+    return this.http.get<PlanData>(this.apiUrl+'/getplans')
+  }
 }

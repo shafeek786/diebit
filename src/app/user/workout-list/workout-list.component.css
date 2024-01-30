@@ -1,0 +1,76 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    height: 100vh;
+}
+
+.dialog-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 80vh;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 1200px;
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Allow scrolling if content exceeds container height */
+}
+
+.workouts {
+    margin-top: 20px;
+    max-height: 60vh; /* Set the maximum height for workouts */
+    overflow-y: auto; /* Add a vertical scrollbar if needed */
+}
+.workout-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.workout {
+    text-align: center;
+    min-width: 150px;
+    font-size: 18px;
+    padding: 20px;
+    margin: 40px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.workout:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(79, 143, 134, 0.5);
+}
+
+.workout span {
+    font-size: 40px;
+    color: #4f8f86;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.workout h3 {
+    margin: 0;
+    color: #333;
+}
+
+/* Add more specific styles for the h1 tag if needed */
+.dialog-container h1 {
+    color: #4f8f86;
+    margin-bottom: 20px;
+}
+
+/* Optional: Add a background color to the header for contrast */
+.dialog-container h1::before {
+    content: "";
+    display: block;
+    height: 5px;
+    background-color: #4f8f86;
+    margin-bottom: 10px;
+}

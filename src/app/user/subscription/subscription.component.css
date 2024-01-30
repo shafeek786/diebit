@@ -1,0 +1,51 @@
+.container {
+    margin: 20px auto;
+}
+
+.card {
+    margin: 10px;
+    max-width: 350px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    text-align: center; /* Center align the plan type */
+    background-color: #eb600f; /* Background color for the plan type */
+    color: #fff; /* Text color for the plan type */
+    padding: 10px; /* Add padding for better appearance */
+    border-top-left-radius: 8px; /* Adjust border radius for the title */
+    border-top-right-radius: 8px; /* Adjust border radius for the title */
+}
+
+.card-body {
+    font-size: 18px;
+    padding: 20px;
+}
+
+.card-body .button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button button {
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #eb600f;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.button button:hover {
+    color: #fff;
+    background-color: #eb600f;
+    cursor: pointer;
+}

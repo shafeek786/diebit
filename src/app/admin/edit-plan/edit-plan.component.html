@@ -1,0 +1,32 @@
+<form *ngIf="subscription" [formGroup]="editPlan" (ngSubmit)="onSubmit()" class="plan-form">
+        <h1 class="form-title">Edit Subscription Plan</h1>  
+    <div class="form-group">
+      <label for="planType">Plan Type</label>
+      <input type="text" formControlName="planType" id="planType" class="form-control">
+    </div>
+  
+    <div class="form-group">
+      <label for="price">Price (per month)</label>
+      <input type="text" formControlName="price" id="price" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Fitness Features</label><br>
+      <input type="checkbox" formControlName="blog" id="blog">
+      <label for="blog">Blog</label><br>
+      <input type="checkbox" formControlName="workoutPlan" id="workouts">
+      <label for="workoutPlan">Workout Plans</label><br>
+      <input type="checkbox" formControlName="chat" id="chat">
+      <label for="chat">Chat</label><br>
+      <input type="checkbox" formControlName="progressTracking" id="progressTracking">
+      <label for="progressTracking">Progress Tracking</label><br>
+      <input type="checkbox" formControlName="trainer" id="trainer">
+      <label for="trainer">Trainer</label><br>
+      <input type="checkbox" formControlName="chatWithTrainer" id="chatWithTrainer">
+      <label for="chatWithTrainer">Only chat with trainer</label><br>
+      <input type="checkbox" formControlName="videoCall" id="hours5">
+      <label for="videoCall">Video Call</label><br>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Edit Plan</button>
+  </form>
+  

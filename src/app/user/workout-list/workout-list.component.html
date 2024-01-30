@@ -1,0 +1,27 @@
+<div class="body">
+    <div class="dialog-container">
+        <h1>Add Exercise</h1>
+
+        <div class="workouts">
+            <!-- Repeat the following block for each set of 4 workouts -->
+            <div class="workout-group">
+                <div class="workout" (click)="openAddWorkoutDialog('Gym')">
+                    <span><i class="fa-solid fa-dumbbell"></i></span>
+                    <h3>Gym</h3>
+                </div>
+                <div class="workout" (click)="openAddWorkoutDialog('Cardio')">
+                    <span><i class="fa-solid fa-heart-circle-bolt"></i></span>
+                    <h3>Cardio</h3>
+                </div>
+                <div class="workout" (click)="openAddWorkoutDialog('Cycling')">
+                    <span><i class="fa-solid fa-person-biking"></i></span>
+                    <h3>Cycling</h3>
+                </div>
+                <div class="workout" (click)="openAddWorkoutDialog('Walking')">
+                    <span><i class="fa-solid fa-person-walking"></i></span>
+                    <h3>Walking</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
