@@ -78,6 +78,11 @@ import { AddPlanComponent } from './admin/add-plan/add-plan.component';
 import { ManagePlanComponent } from './admin/manage-plan/manage-plan.component';
 import { EditPlanComponent } from './admin/edit-plan/edit-plan.component';
 import { SubscriptionComponent } from './user/subscription/subscription.component';
+import { ScheduleComponent } from './trainer/schedule/schedule.component';
+import { TrainerprofileComponent } from './trainer/trainerprofile/trainerprofile.component';
+import { TrainerlistComponent } from './user/trainerlist/trainerlist.component';
+import { TrainerDetailsComponent } from './user/trainer-details/trainer-details.component';
+import { AvailableSlotsComponent } from './user/available-slots/available-slots.component';
 
 @NgModule({
   declarations: [
@@ -135,7 +140,12 @@ import { SubscriptionComponent } from './user/subscription/subscription.componen
     AddPlanComponent,
     ManagePlanComponent,
     EditPlanComponent,
-    SubscriptionComponent
+    SubscriptionComponent,
+    ScheduleComponent,
+    TrainerprofileComponent,
+    TrainerlistComponent,
+    TrainerDetailsComponent,
+    AvailableSlotsComponent
   ],
   imports: [
     BrowserModule,

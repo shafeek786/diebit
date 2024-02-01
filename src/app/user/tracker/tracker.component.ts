@@ -89,6 +89,7 @@ export class TrackerComponent implements OnInit {
     
     console.log("subscription: "+this.isSusbscribed)
     this.service
+    
       .getUsrFoodHistory(this.decodedToken.id)
       .subscribe((res: FoodHistory) => {
         this.consumedCalories = res.todayCalorieIntake;

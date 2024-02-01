@@ -11,6 +11,8 @@ import { trainerAuthGuard } from 'src/app/guards/trainer-auth.guard';
 import { adminauthGuard } from 'src/app/guards/adminauth.guard';
 import { TrainerBlogsComponent } from 'src/app/trainer/trainer-blogs/trainer-blogs.component';
 import { TrainerAddBlogComponent } from 'src/app/trainer/trainer-add-blog/trainer-add-blog.component';
+import { ScheduleComponent } from 'src/app/trainer/schedule/schedule.component';
+import { TrainerprofileComponent } from 'src/app/trainer/trainerprofile/trainerprofile.component';
 
 const trainerRoutes:Routes = [
   { path:'trainer/login', component:TrainerLoginComponent,canActivate:[trainerLoginGuard]},
@@ -21,7 +23,9 @@ const trainerRoutes:Routes = [
       {path:'',redirectTo:'dashboard', pathMatch:'full'},
       { path:'dashboard', component:TrainerDashboardComponent,canActivate:[trainerAuthGuard]},
       { path:'blogs', component:TrainerBlogsComponent, canActivate:[trainerAuthGuard]},
-      { path:'addblog', component:TrainerAddBlogComponent, canActivate:[trainerAuthGuard]}
+      { path: 'profile', component:TrainerprofileComponent, canActivate:[trainerAuthGuard]},
+      { path:'addblog', component:TrainerAddBlogComponent, canActivate:[trainerAuthGuard]},
+      { path:'scheduletime', component:ScheduleComponent, canActivate:[trainerAuthGuard]}
     ]}
 ]
 

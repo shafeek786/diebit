@@ -1,0 +1,71 @@
+<div class="container">
+  <h2>Schedule your available time</h2>
+  <div class="scheduler">
+      <div class="calendar">
+          <h3>Calendar</h3>
+          <div class="input-group">
+              <a class="btn btn-outline-secondary" (click)="changeDate(-1)">
+                  <i class="fa-solid fa-backward"></i>
+              </a>
+              <span class="input-group-text">
+                  <i class="fa-regular fa-calendar-days"></i>
+              </span>
+              <div class="col-md-2">
+                  <input id="datepicker" type="text" class="form-control" bsDatepicker [(bsValue)]="selectedDate"
+                      [bsConfig]="bsConfig" [value]="getFormattedDate()" (bsValueChange)="changeDate(0)" />
+              </div>
+              <a class="btn btn-outline-secondary" (click)="changeDate(1)">
+                  <i class="fa-solid fa-forward"></i>
+              </a>
+          </div>
+      </div>
+      <div class="time-slots">
+          <h3>Schedule Time Slots</h3>
+            <select class="form-select" [(ngModel)]="selectedTimeSlot">
+                <option value="00:00-01:00">00:00 - 01:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+                <option value="01:00-02:00">01:00 - 02:00</option>
+
+            
+            </select>
+        </div>
+        <button class="btn btn-primary schedule-btn" (click)="onSubmit()">Schedule</button>
+    </div>
+    
+</div>
+
+<div *ngIf="timeSlot.length > 0">
+  <h3>Time Slots</h3>
+  <div class="time-slot-container">
+      <div *ngFor="let slot of timeSlot" class="time-slot">
+          <span>{{ slot.timeSlot }}</span>
+          <div class="button-container">
+              <button *ngIf="slot.status === 'Available'" class="cancel-btn" (click)="cancelSlot(slot._id)">Cancel</button>
+              <button *ngIf="slot.status === 'Scheduled'" class="success-btn" (click)="cancelSlot(slot._id)">Taken</button>
+              <h3 *ngIf="slot.status === 'Cancelled'">Cancelled</h3>
+          </div>
+      </div>
+  </div>
+</div>

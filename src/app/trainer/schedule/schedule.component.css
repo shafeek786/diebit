@@ -1,0 +1,81 @@
+.container {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 0 15px;
+}
+
+.col-md-2 {
+    width: 125px;
+}
+.scheduler {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calendar, .time-slots {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group-text {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 5px 0 0 5px;
+}
+
+.input-group input {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 0 5px 5px 0;
+    padding: 8px;
+}
+
+.schedule-btn {
+    padding: 8px 20px;
+    border-radius: 5px;
+}
+
+.time-slot-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.time-slot {
+    background-color: #c9f0f3;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    width: calc(20% - 20px);
+}
+
+.time-slot span {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    
+}
+
+.cancel-btn, .success-btn {
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+   
+}
+
+.success-btn {
+    background-color: #5cb85c;
+}
