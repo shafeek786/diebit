@@ -40,5 +40,11 @@ checkSubscription(userId:string):Observable<SubscriptionStatus>{
   const params = new HttpParams().set('userId', String(userId))
   return this.http.get<SubscriptionStatus>(this.apiUrl+'/checkssubscription',{ params })
 }
+
+getUserPlan(userId:string):Observable<PlanResponse>{
+  console.log(userId)
+  const params = new HttpParams().set('userId', userId)
+  return this.http.get<PlanResponse>(this.apiUrl+'/getuserplan',{ params })
+}
 }
 

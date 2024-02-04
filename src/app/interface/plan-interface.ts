@@ -29,3 +29,7 @@ export interface planApiResponse{
 export interface SubscriptionStatus{
   isActive:boolean
 }
+
+export interface PlanResponse{
+  planName:string
+}

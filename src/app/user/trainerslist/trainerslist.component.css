@@ -1,0 +1,29 @@
+
+.trainers-container {
+    margin-left: 5vh;
+    margin-right: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.trainer-card {
+    width: calc(33.33% - 50px); /* Adjust width as needed */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.propic {
+    width: 250px;
+    height: 1350px;
+}
+.trainer-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Adjust border radius for rounded corners */
+}
+
+.trainer-card p {
+    margin-top: 10px;
+    font-weight: bold;
+}

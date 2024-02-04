@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { signupData, loginData, Response, blog } from 'src/app/interface/trainer-interface';
+import { signupData, loginData, Response, blog, trainerData } from 'src/app/interface/trainer-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -57,5 +57,16 @@ export class AuthService {
     const stringId = String(id);
     const params = new HttpParams().set('id', stringId);
     return this.http.get<blog>(this.apiUrl + '/getblog', { params });
+  }
+
+  getTrainerDetails(trainerId:string):Observable<trainerData>{
+    console.log("id"+trainerId)
+    const params = new HttpParams().set('trainerId', String(trainerId))
+    return this.http.get<trainerData>(this.apiUrl+'/trainerdetails',{ params })
+  }
+
+  updateTrainer(trainerId:string, data:signupData):Observable<trainerData>{
+    console.log(trainerId)
+    return this.http.post<trainerData>(this.apiUrl+'/updatetrainer',{trainerId,data})
   }
 }

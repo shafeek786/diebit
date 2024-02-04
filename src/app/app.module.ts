@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './route/app-routing/app-routing.module';
 import { AdminRaoutingModule } from './route/admin-routing/admin-routing.module';
 import { TrainerRoutingModule } from './route/trainer-routing/trainer-routing.module';
@@ -80,9 +80,9 @@ import { EditPlanComponent } from './admin/edit-plan/edit-plan.component';
 import { SubscriptionComponent } from './user/subscription/subscription.component';
 import { ScheduleComponent } from './trainer/schedule/schedule.component';
 import { TrainerprofileComponent } from './trainer/trainerprofile/trainerprofile.component';
-import { TrainerlistComponent } from './user/trainerlist/trainerlist.component';
-import { TrainerDetailsComponent } from './user/trainer-details/trainer-details.component';
 import { AvailableSlotsComponent } from './user/available-slots/available-slots.component';
+import { TrainerDetailComponent } from './user/trainer-detail/trainer-detail.component';
+import { TrainerslistComponent } from './user/trainerslist/trainerslist.component';
 
 @NgModule({
   declarations: [
@@ -143,12 +143,13 @@ import { AvailableSlotsComponent } from './user/available-slots/available-slots.
     SubscriptionComponent,
     ScheduleComponent,
     TrainerprofileComponent,
-    TrainerlistComponent,
-    TrainerDetailsComponent,
-    AvailableSlotsComponent
+    AvailableSlotsComponent,
+    TrainerDetailComponent,
+    TrainerslistComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     AdminRaoutingModule,
     TrainerRoutingModule,

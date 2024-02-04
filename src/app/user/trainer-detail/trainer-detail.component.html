@@ -1,0 +1,24 @@
+<div class="container">
+    <h2 class="title">Meet Our Expert Trainer</h2>
+    <div class="profile-wrapper">
+      <div class="profile-picture">
+        <img [src]="trainerData.proPic[0]" alt="Trainer Name Profile Picture">
+      </div>
+      <div class="trainer-details">
+        <h1 class="trainer-name">{{ trainerData.firstName }} {{ trainerData.lastName }}</h1>
+        <div class="contact-info">
+          <span class="icon"><i class="fas fa-phone-alt"></i></span>
+          <span>{{ trainerData.mobile }}</span>
+          <span class="icon"><i class="fas fa-envelope"></i></span>
+          <span>{{ trainerData.email }}</span>
+        </div>
+        <p class="qualification">{{ trainerData.qualification }}</p>
+        <p class="experience">{{ trainerData.yearofexperience}} Years of Experience</p>
+        <h2>About Me</h2>
+        <p>{{ trainerData.aboutMe }}</p>
+        <button *ngIf="userPlan === 'gold' || userPlan === 'platinum' " class="book-session">Book a Session</button>
+        <button *ngIf="userPlan !== 'gold' && userPlan !== 'platinum' " class="book-session" (click)="upgradePlan()" >Upgrade Plan</button>
+        
+      </div>
+    </div>
+  </div>

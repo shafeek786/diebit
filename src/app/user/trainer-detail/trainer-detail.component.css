@@ -1,0 +1,93 @@
+html, body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Profile area styles */
+  .profile-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 110%;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .profile-picture {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .profile-picture img {
+    max-width: 550px;
+    border-radius: 3%;
+  }
+  
+  .trainer-details {
+    flex: 2;
+    padding: 20px;
+  }
+  
+  /* Text styles */
+  .title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .trainer-name {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .contact-info span{
+    margin-right: 15px;
+  }
+  
+  .contact-info span:first-child {
+    margin-right: 10px;
+  }
+  
+  .qualification,
+  .experience {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .about-me {
+    text-align: justify;
+    margin-bottom: 20px;
+  }
+  
+  /* Button styles */
+  .book-session {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Optional - Change icon colors */
+  .fas {
+    color: #007bff;
+  }

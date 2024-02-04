@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from 'src/app/guards/auth.guard';
 import { LoginGuard } from 'src/app/guards/login.guard';
+import { TrainerprofileComponent } from 'src/app/trainer/trainerprofile/trainerprofile.component';
 import { AboutComponent } from 'src/app/user/about/about.component';
+import { AvailableSlotsComponent } from 'src/app/user/available-slots/available-slots.component';
 import { BodyComponent } from 'src/app/user/components/body/body.component';
 import { ContactComponent } from 'src/app/user/contact/contact.component';
 import { DashboardComponent } from 'src/app/user/dashboard/dashboard.component';
@@ -16,6 +18,7 @@ import { ResetpasswordComponent } from 'src/app/user/resetpassword/resetpassword
 import { SignupComponent } from 'src/app/user/signup/signup.component';
 import { SubscriptionComponent } from 'src/app/user/subscription/subscription.component';
 import { TrackerComponent } from 'src/app/user/tracker/tracker.component';
+import { TrainerslistComponent } from 'src/app/user/trainerslist/trainerslist.component';
 import { UserBlogsComponent } from 'src/app/user/user-blogs/user-blogs.component';
 import { UserDashboardComponent } from 'src/app/user/user-dashboard/user-dashboard.component';
 
@@ -36,7 +39,9 @@ const routes: Routes =  [
     { path: 'tracker', component:TrackerComponent, canActivate:[authGuard]},
     { path:'food', component:FoodtoUserComponent,canActivate:[authGuard]},
     { path:'blogs',component:UserBlogsComponent, canActivate:[authGuard]},
-    { path:'subscription', component:SubscriptionComponent, canActivate:[authGuard]}
+    { path:'subscription', component:SubscriptionComponent, canActivate:[authGuard]},
+    { path:'availableslots', component:AvailableSlotsComponent, canActivate:[authGuard]},
+    { path:'trainers', component:TrainerslistComponent,canActivate:[authGuard]}
   ]},
   { path: 'otp', component:OtpComponent},
   { path: 'forgotpassword', component:ForgetPasswordComponent},

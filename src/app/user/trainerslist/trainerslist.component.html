@@ -1,0 +1,8 @@
+<div class="content-body">   
+    <div class="trainers-container">
+        <div class="trainer-card" *ngFor="let trainer of trainerData">
+            <img [src]="trainer.proPic[0]" alt="Trainer 1" (click)="aboutTrainer(trainer._id)">
+            <p>{{trainer.firstName}}</p>
+        </div>
+    </div>
+</div>

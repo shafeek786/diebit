@@ -10,10 +10,12 @@ export interface signupData {
   firstName: string;
   lastName: string;
   email: string;
-  mobileNumber: number;
+  mobile: number;
   qualification: string;
-  yearofEcperience: number;
+  yearofexperience: number;
   password: string;
+  proPic:string
+  aboutMe:string
 };
   
 export interface loginData {
@@ -25,4 +27,12 @@ export interface Response {
       message: string;
     };
   
+export interface trainerData {
+  trainerData: signupData
+  message: string
+}
+
+export interface TrainerImage{
+  image:string
+}
   
