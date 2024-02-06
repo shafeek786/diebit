@@ -2,8 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Trainer, TrainerList, TrainerById } from '../interface/userTrainer-interface';
+import { Trainer, TrainerList, TrainerById, SubscribedTrainer } from '../interface/userTrainer-interface';
 import { userId, trainerId } from '../interface/admin-interface';
+import { Response, trainerData } from '../interface/trainer-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,14 @@ export class UserTrainerService {
       return this.http.get<TrainerById>(this.apiUrl+'/getTrainerbyid',{ params })
   }
 
-  subscribeTrainer(userId: string,trainerId:string){
+  subscribeTrainer(userId: string,trainerId:string):Observable<trainerData>{
+    console.log(trainerId)
     const params = new HttpParams().set('userId', userId).set('trainerId',trainerId)
-    return this.http.get(this.apiUrl+'/subscribetrainer',{ params })
+    return this.http.get<trainerData>(this.apiUrl+'/subscribetrainer',{ params })
+  }
+
+  getSubscribedTrainer(userId:string):Observable<trainerData>{
+    const params = new HttpParams().set('userId', userId)
+    return this.http.get<trainerData>(this.apiUrl+'/getsubscribedtrainer',{ params })
   }
 }

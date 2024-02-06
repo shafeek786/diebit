@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './route/app-routing/app-routing.module';
 import { AdminRaoutingModule } from './route/admin-routing/admin-routing.module';
 import { TrainerRoutingModule } from './route/trainer-routing/trainer-routing.module';
@@ -83,6 +84,9 @@ import { TrainerprofileComponent } from './trainer/trainerprofile/trainerprofile
 import { AvailableSlotsComponent } from './user/available-slots/available-slots.component';
 import { TrainerDetailComponent } from './user/trainer-detail/trainer-detail.component';
 import { TrainerslistComponent } from './user/trainerslist/trainerslist.component';
+import { SubscribedTrainerComponent } from './user/subscribed-trainer/subscribed-trainer.component';
+import { UserChatComponent } from './user/user-chat/user-chat.component';
+import { TrainerChatComponent } from './trainer/trainer-chat/trainer-chat.component';
 
 @NgModule({
   declarations: [
@@ -145,13 +149,17 @@ import { TrainerslistComponent } from './user/trainerslist/trainerslist.componen
     TrainerprofileComponent,
     AvailableSlotsComponent,
     TrainerDetailComponent,
-    TrainerslistComponent
+    TrainerslistComponent,
+    SubscribedTrainerComponent,
+    UserChatComponent,
+    TrainerChatComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
     AdminRaoutingModule,
+    NgbModule,
     TrainerRoutingModule,
     BrowserAnimationsModule,
     CarouselModule,

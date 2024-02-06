@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { TokenData } from 'src/app/interface/user-interface';
 import { jwtDecode } from 'jwt-decode';
-import { TrainerImage, signupData, trainerData } from 'src/app/interface/trainer-interface';
+import { Trainer, TrainerImage, signupData, trainerData } from 'src/app/interface/trainer-interface';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ImageService } from '../service/image.service';
@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TrainerprofileComponent implements OnInit{
   decodedTrianerToken!: TokenData
-  trainer!: signupData
+  trainer!: Trainer
   updateForm!: FormGroup
   showText: boolean = false;
    selectedFile: File | null = null;

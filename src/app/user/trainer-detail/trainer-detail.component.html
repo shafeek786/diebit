@@ -16,7 +16,7 @@
         <p class="experience">{{ trainerData.yearofexperience}} Years of Experience</p>
         <h2>About Me</h2>
         <p>{{ trainerData.aboutMe }}</p>
-        <button *ngIf="userPlan === 'gold' || userPlan === 'platinum' " class="book-session">Book a Session</button>
+        <button *ngIf="userPlan === 'gold' || userPlan === 'platinum' " class="book-session" (click)="subscribe()">Subscribe</button>
         <button *ngIf="userPlan !== 'gold' && userPlan !== 'platinum' " class="book-session" (click)="upgradePlan()" >Upgrade Plan</button>
         
       </div>

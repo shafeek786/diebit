@@ -21,3 +21,7 @@ export interface TrainerById{
     message:string
     trainerData:Trainer
 }
+
+export interface SubscribedTrainer{
+    trainer: string
+}

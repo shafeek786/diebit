@@ -2,13 +2,14 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserTrainerService } from 'src/app/services/user-trainer.service';
 import { trainerId } from '../../interface/admin-interface';
-import { trainerData } from '../../interface/trainer-interface';
+import { Response, trainerData } from '../../interface/trainer-interface';
 import { Trainer, TrainerById, TrainerList } from 'src/app/interface/userTrainer-interface';
 import { tokenData } from 'src/app/interface/tokenInterface';
 import { jwtDecode } from 'jwt-decode';
 import { Plan, PlanResponse, planApiResponse } from 'src/app/interface/plan-interface';
 import { PlanserviceService } from 'src/app/services/planservice.service';
 import { Router } from '@angular/router';
+import { TrainerSharedService } from 'src/app/services/trainer-shared.service';
 
 @Component({
   selector: 'app-trainer-detail',
@@ -24,7 +25,8 @@ export class TrainerDetailComponent implements OnInit {
               private planService: PlanserviceService,
               @Inject(MAT_DIALOG_DATA) public data: { trainerId: string},
               private dialogRef: MatDialogRef<TrainerDetailComponent>,
-              private router: Router
+              private router: Router,
+              private trainerSharedService: TrainerSharedService
     ){
       this.trainerId = data.trainerId
     }
@@ -53,5 +55,17 @@ export class TrainerDetailComponent implements OnInit {
   upgradePlan(){
     this.dialogRef.close()
     this.router.navigate(['/dashboard/subscription'])
+  }
+  subscribe(){
+    console.log("subscrivbe")
+    this.trainerService.subscribeTrainer(this.decodedToken.id,this.trainerId).subscribe((res:trainerData)=>{
+      console.log(res)
+        if(res.message === 'updated'){
+          console.log("change: "+ this.trainerData)
+          this.trainerSharedService.subscribedTrainer(this.trainerData)
+          this.dialogRef.close()
+        }
+        
+    })
   }
 }

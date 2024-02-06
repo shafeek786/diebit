@@ -17,6 +17,18 @@ export interface signupData {
   proPic:string
   aboutMe:string
 };
+
+export interface Trainer {
+  _id:string
+    firstName:string
+    lastName:string
+    email:string
+    mobile:string
+    proPic:string
+    qualification:string
+    yearofexperience:number
+    aboutMe:string
+};
   
 export interface loginData {
       username: string;
@@ -28,7 +40,7 @@ export interface Response {
     };
   
 export interface trainerData {
-  trainerData: signupData
+  trainerData: Trainer
   message: string
 }
 

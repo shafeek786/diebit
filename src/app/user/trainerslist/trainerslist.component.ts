@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Plan } from 'src/app/interface/plan-interface';
-import { Trainer, TrainerList } from 'src/app/interface/userTrainer-interface';
+import { SubscribedTrainer, Trainer, TrainerList } from 'src/app/interface/userTrainer-interface';
 import { UserTrainerService } from 'src/app/services/user-trainer.service';
 import { TrainerDetailComponent } from '../trainer-detail/trainer-detail.component';
 import { trainerId } from '../../interface/admin-interface';
+import { TrainerSharedService } from '../../services/trainer-shared.service';
+import { tokenData } from 'src/app/interface/tokenInterface';
+import { jwtDecode } from 'jwt-decode';
+import { signupData, trainerData } from 'src/app/interface/trainer-interface';
 
 @Component({
   selector: 'app-trainerslist',
@@ -12,12 +16,24 @@ import { trainerId } from '../../interface/admin-interface';
   styleUrls: ['./trainerslist.component.css']
 })
 export class TrainerslistComponent implements OnInit {
+  subscribedTrainer!: Trainer 
+  decodedToken!: tokenData
     constructor(private trainerService: UserTrainerService,
-                private dialog: MatDialog){}
+                private dialog: MatDialog,
+                private traienrSharedService: TrainerSharedService
+                ){}
   trainerData!:Trainer[]
   ngOnInit(): void {
+    this.decodedToken = jwtDecode(localStorage.getItem('token') as string)
       console.log("trainer list")
       this.getTrainers()
+      this.getSubscribedTrainer()
+      this.traienrSharedService.subscribedTrainer$.subscribe((res: Trainer)=>{
+        console.log("res: "+ res)
+        this.subscribedTrainer = res
+      })
+    
+
   }
 
   getTrainers(){
@@ -32,6 +48,12 @@ export class TrainerslistComponent implements OnInit {
       enterAnimationDuration: '500ms',
       exitAnimationDuration: '500ms',
       data: { trainerId: trainerId }
+    })
+  }
+  getSubscribedTrainer(){
+    this.trainerService.getSubscribedTrainer(this.decodedToken.id).subscribe((res:trainerData)=>{
+      this.subscribedTrainer = res.trainerData
+   
     })
   }
 }
