@@ -42,3 +42,18 @@ export interface ResendOtp {
   email:string
 
 }
+
+export interface UserInterface {
+  _id:string
+  name:string
+  email:string
+  mobile: number
+  isOnline:string
+  proPic: string
+}
+
+export interface ApiResponse {
+  message:string
+  userData: UserInterface[];
+}
+

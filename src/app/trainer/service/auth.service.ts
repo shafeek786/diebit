@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { signupData, loginData, Response, blog, trainerData } from 'src/app/interface/trainer-interface';
+import { ApiResponse, UserInterface } from 'src/app/interface/user-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -69,4 +70,10 @@ export class AuthService {
     console.log(trainerId)
     return this.http.post<trainerData>(this.apiUrl+'/updatetrainer',{trainerId,data})
   }
+
+  getUser(trainerId:string):Observable<ApiResponse>{
+    console.log("trainer id: "+trainerId)
+    const params = new HttpParams().set('trainerId', String(trainerId))
+    return this.http.get<ApiResponse>(this.apiUrl+'/getusers',{ params })
+  } 
 }

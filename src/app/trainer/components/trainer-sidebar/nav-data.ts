@@ -20,8 +20,8 @@ export const navbarData = [
     label: 'Schedule Time',
   },
   {
-    routeLink: '/trainer/salesreport',
+    routeLink: '/trainer/chat',
     icon: 'fal fa-chart-bar',
-    label: 'Sales Report',
+    label: 'Chat',
   },
 ];

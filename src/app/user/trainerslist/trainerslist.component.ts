@@ -28,10 +28,16 @@ export class TrainerslistComponent implements OnInit {
       console.log("trainer list")
       this.getTrainers()
       this.getSubscribedTrainer()
-      this.traienrSharedService.subscribedTrainer$.subscribe((res: Trainer)=>{
-        console.log("res: "+ res)
-        this.subscribedTrainer = res
-      })
+      this.traienrSharedService.subscribedTrainer$.subscribe((res: Trainer | null) => {
+        if (res) {
+          console.log("res: ", res);
+          this.subscribedTrainer = res;
+          console.log("subscribed: ", this.subscribedTrainer);
+        } else {
+          console.log("No subscribed trainer.");
+          // Handle the case where there is no subscribed trainer
+        }
+      });
     
 
   }

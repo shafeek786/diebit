@@ -34,4 +34,9 @@ export class UserTrainerService {
     const params = new HttpParams().set('userId', userId)
     return this.http.get<trainerData>(this.apiUrl+'/getsubscribedtrainer',{ params })
   }
+
+  getSubscribedTrainerChat(userId:string):Observable<TrainerList>{
+    const params = new HttpParams().set('userId', userId)
+    return this.http.get<TrainerList>(this.apiUrl+'/getsubscribedtrainer',{ params })
+  }
 }

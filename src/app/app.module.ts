@@ -87,6 +87,13 @@ import { TrainerslistComponent } from './user/trainerslist/trainerslist.componen
 import { SubscribedTrainerComponent } from './user/subscribed-trainer/subscribed-trainer.component';
 import { UserChatComponent } from './user/user-chat/user-chat.component';
 import { TrainerChatComponent } from './trainer/trainer-chat/trainer-chat.component';
+import { ChatComponent } from './trainer/chat/chat.component';
+import { UservideocallComponent } from './user/uservideocall/uservideocall.component';
+import { TrainervideocallComponent } from './trainer/trainervideocall/trainervideocall.component';
+import { MatGridListModule} from '@angular/material/grid-list';
+import { MatToolbarModule} from '@angular/material/toolbar';
+import { VideocallComponent } from './videocall/videocall.component'
+
 
 @NgModule({
   declarations: [
@@ -152,7 +159,12 @@ import { TrainerChatComponent } from './trainer/trainer-chat/trainer-chat.compon
     TrainerslistComponent,
     SubscribedTrainerComponent,
     UserChatComponent,
-    TrainerChatComponent
+    TrainerChatComponent,
+    ChatComponent,
+    UservideocallComponent,
+    TrainervideocallComponent,
+    VideocallComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -174,6 +186,8 @@ import { TrainerChatComponent } from './trainer/trainer-chat/trainer-chat.compon
     MatPaginatorModule,
     MatSelectModule,
     MaterialModule,
+    MatGridListModule,
+    MatToolbarModule,
     ChartModule,
     HighchartsChartModule,
     FormsModule,

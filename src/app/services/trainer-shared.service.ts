@@ -6,11 +6,11 @@ import { Trainer } from '../interface/userTrainer-interface';
   providedIn: 'root'
 })
 export class TrainerSharedService {
-  private subscribedTrainerSubject = new BehaviorSubject<Trainer >({} as Trainer);
+  private subscribedTrainerSubject = new BehaviorSubject<Trainer | null>(null);
 
-  subscribedTrainer$ : Observable<Trainer> =  this.subscribedTrainerSubject.asObservable();
+  subscribedTrainer$ : Observable<Trainer | null> =  this.subscribedTrainerSubject.asObservable();
 
-  subscribedTrainer(trainer:Trainer){
+  subscribedTrainer(trainer:Trainer | null){
     this.subscribedTrainerSubject.next(trainer);
   }
 }

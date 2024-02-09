@@ -13,6 +13,8 @@ import { TrainerBlogsComponent } from 'src/app/trainer/trainer-blogs/trainer-blo
 import { TrainerAddBlogComponent } from 'src/app/trainer/trainer-add-blog/trainer-add-blog.component';
 import { ScheduleComponent } from 'src/app/trainer/schedule/schedule.component';
 import { TrainerprofileComponent } from 'src/app/trainer/trainerprofile/trainerprofile.component';
+import { ChatComponent } from 'src/app/trainer/chat/chat.component';
+import { TrainervideocallComponent } from 'src/app/trainer/trainervideocall/trainervideocall.component';
 
 const trainerRoutes:Routes = [
   { path:'trainer/login', component:TrainerLoginComponent,canActivate:[trainerLoginGuard]},
@@ -25,7 +27,9 @@ const trainerRoutes:Routes = [
       { path:'blogs', component:TrainerBlogsComponent, canActivate:[trainerAuthGuard]},
       { path: 'profile', component:TrainerprofileComponent, canActivate:[trainerAuthGuard]},
       { path:'addblog', component:TrainerAddBlogComponent, canActivate:[trainerAuthGuard]},
-      { path:'scheduletime', component:ScheduleComponent, canActivate:[trainerAuthGuard]}
+      { path:'scheduletime', component:ScheduleComponent, canActivate:[trainerAuthGuard]},
+      { path:'chat', component:ChatComponent, canActivate:[trainerAuthGuard]},
+      { path:'videocall', component:TrainervideocallComponent, canActivate:[trainerAuthGuard]}
     ]}
 ]
 

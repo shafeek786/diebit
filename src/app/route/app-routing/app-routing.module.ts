@@ -20,7 +20,9 @@ import { SubscriptionComponent } from 'src/app/user/subscription/subscription.co
 import { TrackerComponent } from 'src/app/user/tracker/tracker.component';
 import { TrainerslistComponent } from 'src/app/user/trainerslist/trainerslist.component';
 import { UserBlogsComponent } from 'src/app/user/user-blogs/user-blogs.component';
+import { UserChatComponent } from 'src/app/user/user-chat/user-chat.component';
 import { UserDashboardComponent } from 'src/app/user/user-dashboard/user-dashboard.component';
+import { UservideocallComponent } from 'src/app/user/uservideocall/uservideocall.component';
 
 
 
@@ -41,7 +43,9 @@ const routes: Routes =  [
     { path:'blogs',component:UserBlogsComponent, canActivate:[authGuard]},
     { path:'subscription', component:SubscriptionComponent, canActivate:[authGuard]},
     { path:'availableslots', component:AvailableSlotsComponent, canActivate:[authGuard]},
-    { path:'trainers', component:TrainerslistComponent,canActivate:[authGuard]}
+    { path:'trainers', component:TrainerslistComponent,canActivate:[authGuard]},
+    { path:'chat', component:UserChatComponent, canActivate:[authGuard]},
+    { path:'videocall', component:UservideocallComponent, canActivate:[authGuard]}
   ]},
   { path: 'otp', component:OtpComponent},
   { path: 'forgotpassword', component:ForgetPasswordComponent},
