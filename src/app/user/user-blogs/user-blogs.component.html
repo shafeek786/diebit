@@ -1,17 +1,26 @@
 <div class="content-body">
     <div class="container-fluid">
-
-<!-- Sample blog card -->
-
-<div class="blog-card" *ngFor="let blog of blogs ">
-    <div class="blog-title">{{blog.title}}</div>
-    <div class="blog-content">
-        {{blog.content}}
+        <!-- Sample blog card -->
+        <div class="row">
+            <div class="col-md-12" *ngFor="let blog of blogs ">
+                <div class="blog-card">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="blog-title">{{blog.title}}</div>
+                            <div class="blog-content">
+                                {{blog.content}}
+                            </div>
+                            <div class="blog-author">{{blog.author}}</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="blog-image">
+                                <img [src]="blog.blogImage[0]" alt="Blog Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add more blog cards as needed -->
     </div>
-    <div class="blog-author">{{blog.author}}</div>
 </div>
-
-<!-- Add more blog cards as needed -->
-</div>
-</div>
-

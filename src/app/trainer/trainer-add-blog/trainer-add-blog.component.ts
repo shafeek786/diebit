@@ -26,6 +26,7 @@ interface response{
 })
 export class TrainerAddBlogComponent {
   blogForm!: FormGroup;
+  selectedFile!: File
   decodedToken:trianerData = jwtDecode(localStorage.getItem('TrainerToken') as string)
   constructor(private fb: FormBuilder, 
             private service:AuthService,
@@ -41,16 +42,24 @@ export class TrainerAddBlogComponent {
       title: ['', [Validators.required, Validators.maxLength(100)]],
       content: ['', [Validators.required]],
       author: ['', [Validators.required]],
-      // Add more fields as needed
+      image: ['',]
     });
   }
 
+  onFileSelected(event: any) {
+    console.log("image1")
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      console.log("image1")
+      
+    }
+  }
   onSubmit() {
     if (this.blogForm.valid) {
       const formData = this.blogForm.value;
       // Add logic to send data to your backend or perform other actions
       console.log(formData);
-      this.service.addBlog(this.decodedToken.id, formData).subscribe({
+      this.service.addBlog(this.decodedToken.id, formData,this.selectedFile).subscribe({
         next: (res: response) => {
           if (res.message === 'Blog post created successfully') {
             this.toastr.success('Blog post created successfully');

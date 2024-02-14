@@ -1,58 +1,64 @@
 body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: auto; /* or overflow: hidden; */
-  }
-  .container {
-    /* Remove or adjust fixed height */
-    height: 100%;
-    overflow: auto; /* or overflow: hidden; */
-  }
-  
-  .blog-card {
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
-  }
-  
-  
-  .blog-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .blog-title {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  
-  .blog-content {
-    font-size: 1em;
-    color: #555;
-  }
-  
-  .blog-author {
-    font-size: 0.8em;
-    color: #777;
-    margin-top: 8px;
-  }
-  
-  .add-blog-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 16px;
-    cursor: pointer;
-    border-radius: 8px;
-  }
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.blog-card {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.blog-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.blog-image img {
+  height: auto;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.blog-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.blog-content {
+  font-size: 1em;
+  color: #555;
+}
+
+.blog-author {
+  font-size: 0.8em;
+  color: #777;
+  margin-top: 12px;
+}
+
+.add-blog-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+}

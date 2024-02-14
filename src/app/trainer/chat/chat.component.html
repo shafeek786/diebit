@@ -1,19 +1,21 @@
 <div class="container-fluid" >
-<p>chat</p>
   <div class="row">
 
     <div class="col-md-4">
 
       <div class="user-list-card">
         <div class="user-card"
-             [ngClass]="user?.email === selectedUser?.email ? 'active':''"
+             [ngClass]="user?._id === selectedUser?._id ? 'active':''"
              *ngFor="let user of userList"
-             (click)="selectUserHandler(user.email)"
+             (click)="selectUserHandler(user._id)"
         >
          
           <p class="username">{{user.name}}</p>
-        </div>
+
+          <p [ngStyle]="{'background-color': user.unreadMessageCount > 0 ? '#ff5722' : 'transparent', 'color': user.unreadMessageCount > 0 ? '#fff' : '#000'}" class="unread">{{ user.unreadMessageCount }}</p>
+    </div>
       </div>
+      <button (click)="getUser2()">click</button>
       
 
     </div>
@@ -28,7 +30,9 @@
                  class="avatar"
             />
             <p class="username">{{selectedUser?.name}}</p>
-
+            <button class="video-call-button" (click)="startVideoCall(selectedUser._id)">
+              <i class="fa fa-video-camera"></i> 
+          </button>
           </div>
 
           <div class="chat-body">

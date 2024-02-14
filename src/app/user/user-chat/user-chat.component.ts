@@ -2,9 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { jwtDecode } from 'jwt-decode';
 import { Trainer, trainerData } from 'src/app/interface/trainer-interface';
-import { TokenData } from 'src/app/interface/user-interface';
+import { ApiResponse, TokenData, UserInterface } from 'src/app/interface/user-interface';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { UserTrainerService } from 'src/app/services/user-trainer.service';
+import { SharedChatService } from '../../services/shared-chat.service';
+import { AuthService } from 'src/app/trainer/service/auth.service';
+import { userId } from '../../interface/admin-interface';
 
 @Component({
   selector: 'app-user-chat',
@@ -16,58 +19,112 @@ export class UserChatComponent implements OnInit {
   public messageText!: string;
   public messageArray: { user: string; message: string }[] = [];
   public storageArray: any[] = [];
+  public allMessage: any[] = []
+  public unreadCounts: { _id: any; count: number }[] = [];
+  public userList2!: UserInterface[]
 
   public showScreen = false;
   public phone!: string;
   public currentUser: any;
   public selectedUser: any;
   decodedToken!: TokenData;
-
-  public userList!: Trainer[];
+  unreadCount:number  = 1
+  public userList!: Trainer;
+  notifications: any;
 
   constructor(
     private modalService: NgbModal,
     private chatService: ChatService,
-    private trainerService: UserTrainerService
+    private trainerService: UserTrainerService,
+    private SharedChatService:SharedChatService,
+    private service: AuthService
   ) {}
 
   ngOnInit(): void {
     this.decodedToken = jwtDecode(localStorage.getItem('token') as string);
+    this.getAllMessage()
     this.currentUser = this.decodedToken.id;
     this.getTrainer();
-    console.log('ngOnInit called');
+    this.getUserUpdate()
+   
+
+    console.log("Before subscribing to trainerList$");
+    this.SharedChatService.trainerList$.subscribe((res: trainerData) => {
+      console.log("Subscription triggered. Received data:", res);
+      this.unreadCounts = res.unreadCounts;
+      this.getUnreadMessageCount();
+    });
     this.chatService
       .getMessage()
       .subscribe((data: { user: string; room: string; message: string }) => {
         if (this.roomId) {
+              this.getTrainer()
+              this.readMessage(this.roomId,this.decodedToken.id)
+
           setTimeout(() => {
+            this.getUserUpdate()
             this.chatService.getStorage(this.roomId).subscribe((res: any) => {
               console.log('res:' + res.chats);
               this.storageArray = res.chats;
+              
             });
           }, 500);
         }
       });
+
+      
     
   }
-
+  getAllMessage(){
+    this.chatService.getAllMessage(this.decodedToken.id).subscribe((res:any)=>{
+      this.allMessage = res.chats
+    })
+  }
   getTrainer() {
     this.trainerService
       .getSubscribedTrainer(this.decodedToken.id)
       .subscribe((res: trainerData) => {
-        this.userList = [];
-        this.userList.push(res.trainerData);
+
+        this.userList= res.trainerData
+        this.unreadCounts = res.unreadCounts
         console.log('traienrrr: ' + this.userList);
-        console.log(this.userList.length);
+        this.getUnreadMessageCount()
       });
   }
 
+  getUserUpdate() {
+    console.log("trainerId:" + this.decodedToken.id);
+    this.service.getUser(this.selectedUser).subscribe((res: any) => {
+      this.userList2 = res.userData;
+      console.log("trainser side user: ", res);
+      console.log("trainser side user: ", this.userList2);
+      console.log("trainser side user: ", res.userData);
+      console.log("to shared service: "+res.userData)
+      this.SharedChatService.updateUserList(res.userData)
+      // If userData is an object, log its properties individually
+      console.log("userData firstName:", res.userData.name);
+      console.log("userData email:", res.userData.email);
+      // Add more properties as needed
+    });
+  }
+
+  getUnreadMessageCount() {
+    console.log("hjkhjkdgh"+ this.userList)
+      const unreadMessageObj = this.unreadCounts.find((count) => count._id === this.userList._id);
+   
+    this.unreadCount =  unreadMessageObj ? unreadMessageObj.count : 0;
+    console.log("count :"+this.unreadCount)
+}
+
+
+  
   selectUserHandler(trainerId: string): void {
-    this.selectedUser = this.userList.find((user) => user._id === trainerId);
-    console.log('selected trainer: ' + this.selectedUser.firstName);
+    this.selectedUser = this.userList._id
+    console.log('selected trainer: ' + this.selectedUser
+    );
     this.messageArray = [];
     this.chatService
-      .getroom(this.decodedToken.id, this.selectedUser._id)
+      .getroom(this.decodedToken.id, this.selectedUser)
       .subscribe((res: any) => {
         this.roomId = res.roomDetails._id;
 
@@ -75,6 +132,8 @@ export class UserChatComponent implements OnInit {
           this.storageArray = res.chats;
           console.log('dataaa' + this.storageArray);
       });
+
+      this.readMessage(this.roomId,this.decodedToken.id)
  
     });
 
@@ -97,9 +156,26 @@ export class UserChatComponent implements OnInit {
       trainerId: this.selectedUser,
     });
   }
+ 
+  getUnreadNotificationCount(trainerId: string): number {
+    return this.storageArray.filter((notification: { sender: string; is_read: any }) => 
+        notification.sender === trainerId && !notification.is_read
+    ).length;
+}
+
+readMessage(roomId:string,userId: string) {
+  this.chatService.readMessage(roomId,userId).subscribe(() => {
+    console.log("Message read successfully.");
+  }, (error) => {
+    console.error("Error reading message:", error);
+  });
+}
 
   sendMessage(): void {
-    console.log(this.messageText);
+    console.log("hiiii")
+    this.SharedChatService.updateCheck(200)
+
+    console.log("message:  "+this.messageText);
     this.chatService.sendMessage({
       userID: this.decodedToken.id,
       trainerId: this.selectedUser._id,
@@ -111,7 +187,6 @@ export class UserChatComponent implements OnInit {
     this.chatService.getStorage(this.roomId).subscribe((res: any) => {
       this.storageArray = res.chats;
     });
-    console.log('chat: ' + this.storageArray);
     const storeIndex = this.storageArray.findIndex(
       (storage) => storage.roomId === this.roomId
     );
@@ -134,8 +209,9 @@ export class UserChatComponent implements OnInit {
 
       this.storageArray.push(updateStorage);
     }
-
+    this.getUserUpdate()
     this.chatService.setStorage(this.storageArray);
     this.messageText = '';
   }
+  
 }

@@ -25,6 +25,7 @@ export interface TokenData {
   id: string;
   name: string;
   email: string;
+
 }
 
 
@@ -49,7 +50,8 @@ export interface UserInterface {
   email:string
   mobile: number
   isOnline:string
-  proPic: string
+  proPic: string,
+  unreadMessageCount : number
 }
 
 export interface ApiResponse {

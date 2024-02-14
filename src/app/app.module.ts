@@ -95,6 +95,12 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import { VideocallComponent } from './videocall/videocall.component'
 
 
+
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { TrainerEditBlogComponent } from './trainer/trainer-edit-blog/trainer-edit-blog.component';
+const config:SocketIoConfig = {url:'http://localhost:8080',options:{}}
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -163,7 +169,8 @@ import { VideocallComponent } from './videocall/videocall.component'
     ChatComponent,
     UservideocallComponent,
     TrainervideocallComponent,
-    VideocallComponent
+    VideocallComponent,
+    TrainerEditBlogComponent
     
   ],
   imports: [
@@ -175,7 +182,12 @@ import { VideocallComponent } from './videocall/videocall.component'
     TrainerRoutingModule,
     BrowserAnimationsModule,
     CarouselModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      preventDuplicates: true,
+    }),
     MatSnackBarModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -192,7 +204,8 @@ import { VideocallComponent } from './videocall/videocall.component'
     HighchartsChartModule,
     FormsModule,
     BsDatepickerModule,
-    DialogModule
+    DialogModule,
+    SocketIoModule.forRoot(config),
 
   ],
   providers: [],

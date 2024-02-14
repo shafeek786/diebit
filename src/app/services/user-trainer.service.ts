@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Trainer, TrainerList, TrainerById, SubscribedTrainer } from '../interface/userTrainer-interface';
 import { userId, trainerId } from '../interface/admin-interface';
 import { Response, trainerData } from '../interface/trainer-interface';
+import { ApiResponse, UserInterface } from '../interface/user-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,10 @@ export class UserTrainerService {
   getSubscribedTrainerChat(userId:string):Observable<TrainerList>{
     const params = new HttpParams().set('userId', userId)
     return this.http.get<TrainerList>(this.apiUrl+'/getsubscribedtrainer',{ params })
+  }
+  getUserUpdate(trainerId:string):Observable<ApiResponse>{
+    const params = new HttpParams().set('trainerId', String(trainerId))
+    console.log("trainer check: "+ trainerId)
+    return this.http.get<ApiResponse>(this.apiUrl+'/updateduserlist',{ params })
   }
 }

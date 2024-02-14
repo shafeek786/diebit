@@ -11,7 +11,7 @@ export const navbarData = [
   },
   {
     routeLink: '/trainer/blogs',
-    icon: 'fal fa-home',
+    icon: 'fa-solid fa-blog',
     label: 'Blogs',
   },
   {
@@ -21,7 +21,7 @@ export const navbarData = [
   },
   {
     routeLink: '/trainer/chat',
-    icon: 'fal fa-chart-bar',
+    icon: 'fa-regular fa-comments',
     label: 'Chat',
   },
 ];

@@ -28,6 +28,8 @@ export interface Trainer {
     qualification:string
     yearofexperience:number
     aboutMe:string
+    unreadMessageCount : number
+
 };
   
 export interface loginData {
@@ -42,6 +44,7 @@ export interface Response {
 export interface trainerData {
   trainerData: Trainer
   message: string
+  unreadCounts:{ _id: any; count: number }[] 
 }
 
 export interface TrainerImage{

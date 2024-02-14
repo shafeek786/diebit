@@ -2,9 +2,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
 import { Observable } from 'rxjs';
-import { signupData, loginData, Response, blog, trainerData } from 'src/app/interface/trainer-interface';
+import { signupData, loginData,trainerData } from 'src/app/interface/trainer-interface';
+import { Blog, Response } from 'src/app/interface/blog-interface';
 import { ApiResponse, UserInterface } from 'src/app/interface/user-interface';
+import { trainerId, userId } from '../../interface/admin-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -48,16 +51,21 @@ export class AuthService {
     return isTokenPresent;
   }
 
-  addBlog(id: string, data: blog): Observable<Response> {
-    return this.http.post<Response>(`${this.apiUrl}/addblog`, { id, data });
+  addBlog(id: string, data: Blog,file:File): Observable<Response> {
+    const formData = new FormData();
+    console.log("add blog")
+    formData.append('id', id);
+    formData.append('data', JSON.stringify(data));
+    formData.append('image', file, file.name);
+    return this.http.post<Response>(`${this.apiUrl}/addblog`,  formData );
   }
 
-  getblog(id: string): Observable<blog> {
+  getblog(id: string): Observable<Blog> {
     console.log('Fetching blog with id:', id);
 
     const stringId = String(id);
     const params = new HttpParams().set('id', stringId);
-    return this.http.get<blog>(this.apiUrl + '/getblog', { params });
+    return this.http.get<Blog>(this.apiUrl + '/getblog', { params });
   }
 
   getTrainerDetails(trainerId:string):Observable<trainerData>{
@@ -76,4 +84,22 @@ export class AuthService {
     const params = new HttpParams().set('trainerId', String(trainerId))
     return this.http.get<ApiResponse>(this.apiUrl+'/getusers',{ params })
   } 
+
+  getUpdatedTrainetList(userId:string):Observable<trainerData>{
+    const params = new HttpParams().set('userId',String(userId))
+    return this.http.get<trainerData>(this.apiUrl+'/getupdatedtrainerlist',{ params })
+  }
+
+  deletBlog(blogId:string,trainerId:string):Observable<Response>{
+    const params = new HttpParams().set('blogId', String(blogId)).set('trainerId', String(trainerId))
+    return  this.http.get<Response>(this.apiUrl+'/deleteblog',{ params })
+
+  }
+
+  readMessage(roomId:string,trainerId:string){
+    console.log("read checksdasadasddsasad: "+ roomId,trainerId)
+    const params = new HttpParams().set('roomId', String(roomId)).set('trainerId', String(trainerId))
+
+    return  this.http.get(this.apiUrl+'/readmessage',{ params })
+  }
 }

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { tokenData } from 'src/app/interface/tokenInterface';
 import { Trainer, trainerData } from 'src/app/interface/trainer-interface';
 import { UserTrainerService } from 'src/app/services/user-trainer.service';
+import { trainerId } from '../../interface/admin-interface';
+import { SocketService } from 'src/app/services/videocall/socket.service';
 
 @Component({
   selector: 'app-uservideocall',
@@ -11,7 +14,9 @@ import { UserTrainerService } from 'src/app/services/user-trainer.service';
 })
 export class UservideocallComponent implements OnInit{
 
-  constructor(private trainerService: UserTrainerService){
+  constructor(private trainerService: UserTrainerService,
+              private router: Router,
+              private socketService: SocketService){
 
   }
   decodedToken!:tokenData
@@ -38,8 +43,12 @@ export class UservideocallComponent implements OnInit{
 
   }
 
-  startVideoCall(name:string){
-
+  startVideoCall(trainerId: string): void {
+    const role = this.decodedToken.role
+    const email = this.decodedToken.email
+    this.socketService.userJoinRoom({email:email});
+    console.log("trainer ID: "+ trainerId)
+    this.router.navigate(['/videocall', trainerId,role]);
   }
 
 

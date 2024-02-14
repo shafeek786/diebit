@@ -4,6 +4,7 @@ import { Response } from 'src/app/interface/admin-interface';
 import { Plan } from 'src/app/interface/plan-interface';
 import { AdminAuthService } from 'src/app/services/admin-auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-plan',
@@ -14,6 +15,7 @@ export class AddPlanComponent implements OnInit {
   planForm!: FormGroup;
 
   constructor(private fb: FormBuilder,
+              private router: Router,
              private service: AdminAuthService,
              private toastr: ToastrService) { }
 
@@ -35,6 +37,7 @@ export class AddPlanComponent implements OnInit {
       console.log(this.planForm.value);
       this.service.addPlan(this.planForm.value).subscribe((res: Response) => {
           this.toastr.success(res.message)
+          this.router.navigate(['/admin/manageplans'])
       });
     }
   }

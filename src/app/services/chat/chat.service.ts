@@ -46,6 +46,7 @@ trainerStoremessage(trainerId:string,message:string,roomId:string){
   }
 
   getroom(userId:string, trainerId:string){
+    console.log("trainer room:"+ trainerId)
     const params = new HttpParams().set('userId',String(userId)).set('trainerId',String(trainerId))
     return this.http.get(this.url+'/getroom',{ params })
   }
@@ -59,8 +60,19 @@ trainerStoremessage(trainerId:string,message:string,roomId:string){
     return this.http.get(this.url+'/fetch-chatbyid',{ params })
   }
 
+  getAllMessage(userId:string) {
+    const params = new HttpParams().set('roomId', String(userId))
+    return this.http.get(this.url+'/fetch-chat',{ params })
+  }
+
   setStorage(data: StorageData[]) {
     localStorage.setItem('chats', JSON.stringify(data));
   }
 
+  readMessage(roomId: string, userId: string) {
+    console.log("read checksdasadasddsasad: " + roomId, userId);
+    const params = new HttpParams().set('roomId', roomId).set('userId', userId);
+
+    return this.http.get(this.url + '/readmessage', { params });
+}
 }

@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
+import { Blog, Response } from 'src/app/interface/blog-interface';
 
-interface blog {
-  title: string;
-  content: string;
-  author: string;
-}
+
+
 interface token {
   id: string;
 }
@@ -17,7 +15,7 @@ interface token {
   styleUrls: ['./trainer-blogs.component.css'],
 })
 export class TrainerBlogsComponent implements OnInit {
-  blogs: blog[] = [];
+  blogs: Blog[] = [];
   decodedToken: token = jwtDecode(
     localStorage.getItem('TrainerToken') as string
   );
@@ -28,5 +26,11 @@ export class TrainerBlogsComponent implements OnInit {
     this.service.getblog(this.decodedToken.id).subscribe((res: any) => {
       this.blogs = res.blogs;
     });
+  }
+
+  deleteBlog(blogId:string){
+    this.service.deletBlog(blogId,this.decodedToken.id).subscribe((res:Response)=>{
+      this.blogs = res.blogs
+    })
   }
 }

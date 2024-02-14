@@ -125,3 +125,43 @@ body {
       }
     }
   }
+
+  /* Style for user cards with unread messages */
+.user-card.unread-messages {
+  position: relative;
+}
+
+/* Style for the red circle */
+.user-card.unread-messages::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Adjust the distance from the right edge of the user card */
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: #ff5722; /* Red color for the circle */
+  border-radius: 50%;
+}
+
+/* Style for unread message count text */
+.user-card p.unread {
+  color: #a32727; /* White text color for unread message count */
+  font-weight: bold; /* Make unread count bold */
+  margin-left: 5px; /* Adjust the distance from the circle */
+}
+
+
+/* Style for unread message count text */
+.user-card p.unread {
+  color: #fff; /* White text color for unread message count */
+  font-weight: bold; /* Make unread count bold */
+  margin-left: 5px; /* Adjust the distance from the circle */
+  display: inline-block; /* Ensure the width and height of the span can be set */
+  width: 20px; /* Set the width of the span */
+  height: 20px; /* Set the height of the span */
+  text-align: center; /* Center the text horizontally */
+  line-height: 20px; /* Center the text vertically */
+  border-radius: 50%; /* Make the background round */
+  background-color: #ff5722; /* Red background color */
+}

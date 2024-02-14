@@ -6,6 +6,7 @@ interface blog {
   title:string,
   content: string,
   author:string
+  blogImage: string
 }
 interface token{
   id:string

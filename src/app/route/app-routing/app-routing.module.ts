@@ -23,6 +23,7 @@ import { UserBlogsComponent } from 'src/app/user/user-blogs/user-blogs.component
 import { UserChatComponent } from 'src/app/user/user-chat/user-chat.component';
 import { UserDashboardComponent } from 'src/app/user/user-dashboard/user-dashboard.component';
 import { UservideocallComponent } from 'src/app/user/uservideocall/uservideocall.component';
+import { VideocallComponent } from 'src/app/videocall/videocall.component';
 
 
 
@@ -47,6 +48,7 @@ const routes: Routes =  [
     { path:'chat', component:UserChatComponent, canActivate:[authGuard]},
     { path:'videocall', component:UservideocallComponent, canActivate:[authGuard]}
   ]},
+  { path:'videocall/:trainerId/:role', component:VideocallComponent, canActivate:[authGuard]},
   { path: 'otp', component:OtpComponent},
   { path: 'forgotpassword', component:ForgetPasswordComponent},
   { path: 'resetpassword', component:ResetpasswordComponent}

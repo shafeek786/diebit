@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Plan, PlanData } from 'src/app/interface/plan-interface';
+import { Plan, PlanData, PlanResponse } from 'src/app/interface/plan-interface';
 import { AdminAuthService } from 'src/app/services/admin-auth.service';
+import { PlanserviceService } from 'src/app/services/planservice.service';
 
 @Component({
   selector: 'app-manage-plan',
@@ -15,7 +16,8 @@ export class ManagePlanComponent implements OnInit {
     { type: 'Gold', price: 49.99, features: ['Workout Plans', 'Nutrition Plans', 'Progress Tracking'] },
     { type: 'Platinum', price: 79.99, features: ['Workout Plans', 'Nutrition Plans', 'Progress Tracking', 'Personal Trainer Support'] }
   ];
-  constructor(private service:AdminAuthService){}
+  constructor(private service:AdminAuthService,
+              private planService: PlanserviceService){}
 ngOnInit(): void {
     this.loadPlan()
     console.log(this.subscription.length)
@@ -34,7 +36,10 @@ ngOnInit(): void {
     // Add logic to edit the plan
   }
 
-  deletePlan(plan:any) {
-    // Add logic to delete the plan
+  deletePlan(planId:string) {
+    console.log(planId)
+   this.planService.deletePlan(planId).subscribe((res:PlanData)=>{
+      this.subscription = res.plans
+   })
   }
 }

@@ -46,5 +46,10 @@ getUserPlan(userId:string):Observable<PlanResponse>{
   const params = new HttpParams().set('userId', userId)
   return this.http.get<PlanResponse>(this.apiUrl+'/getuserplan',{ params })
 }
+
+deletePlan(planId:string):Observable<PlanData>{
+  const params = new HttpParams().set('planId', String(planId))
+  return this.http.get<PlanData>(this.apiUrl+'/admin/deleteplan',{ params })
+}
 }
 

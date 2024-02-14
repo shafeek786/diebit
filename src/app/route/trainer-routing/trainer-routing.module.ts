@@ -15,11 +15,14 @@ import { ScheduleComponent } from 'src/app/trainer/schedule/schedule.component';
 import { TrainerprofileComponent } from 'src/app/trainer/trainerprofile/trainerprofile.component';
 import { ChatComponent } from 'src/app/trainer/chat/chat.component';
 import { TrainervideocallComponent } from 'src/app/trainer/trainervideocall/trainervideocall.component';
+import { VideocallComponent } from 'src/app/videocall/videocall.component';
+import { TrainerEditBlogComponent } from 'src/app/trainer/trainer-edit-blog/trainer-edit-blog.component';
 
 const trainerRoutes:Routes = [
   { path:'trainer/login', component:TrainerLoginComponent,canActivate:[trainerLoginGuard]},
   { path:'trainer/signup', component:TrainerSignupComponent},
   { path:'trainer/confirmpage', component:ConfirmComponent},
+  { path:'trainer/videochat/:trainerId/:role', component:VideocallComponent, canActivate:[trainerAuthGuard]},
   { path:'trainer', component:TrainerContainerComponent,
     children:[
       {path:'',redirectTo:'dashboard', pathMatch:'full'},
@@ -29,7 +32,9 @@ const trainerRoutes:Routes = [
       { path:'addblog', component:TrainerAddBlogComponent, canActivate:[trainerAuthGuard]},
       { path:'scheduletime', component:ScheduleComponent, canActivate:[trainerAuthGuard]},
       { path:'chat', component:ChatComponent, canActivate:[trainerAuthGuard]},
-      { path:'videocall', component:TrainervideocallComponent, canActivate:[trainerAuthGuard]}
+      { path:'videocall', component:TrainervideocallComponent, canActivate:[trainerAuthGuard]},
+      { path:'editblog/:blogId', component:TrainerEditBlogComponent, canActivate:[trainerAuthGuard]}
+      
     ]}
 ]
 
