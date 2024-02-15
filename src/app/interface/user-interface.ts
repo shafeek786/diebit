@@ -1,5 +1,6 @@
 // user-interface.ts
 export interface UserData {
+name: any;
   dateOfBirth: Date;
   gender: string; // Corrected spelling to 'gender'
   weight: number;

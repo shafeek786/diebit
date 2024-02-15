@@ -6,6 +6,9 @@ import { AppRoutingModule } from './route/app-routing/app-routing.module';
 import { AdminRaoutingModule } from './route/admin-routing/admin-routing.module';
 import { TrainerRoutingModule } from './route/trainer-routing/trainer-routing.module';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorService } from './service/token-interceptor.interceptor'; 
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IndexComponent } from './user/index/index.component';
@@ -98,6 +101,9 @@ import { VideocallComponent } from './videocall/videocall.component'
 
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { TrainerEditBlogComponent } from './trainer/trainer-edit-blog/trainer-edit-blog.component';
+import { BloguserComponent } from './user/bloguser/bloguser.component';
+import { SubscribedusersComponent } from './trainer/subscribedusers/subscribedusers.component';
+import { TrainerWalletComponent } from './trainer/trainer-wallet/trainer-wallet.component';
 const config:SocketIoConfig = {url:'http://localhost:8080',options:{}}
 
 
@@ -170,7 +176,10 @@ const config:SocketIoConfig = {url:'http://localhost:8080',options:{}}
     UservideocallComponent,
     TrainervideocallComponent,
     VideocallComponent,
-    TrainerEditBlogComponent
+    TrainerEditBlogComponent,
+    BloguserComponent,
+    SubscribedusersComponent,
+    TrainerWalletComponent
     
   ],
   imports: [
@@ -208,7 +217,13 @@ const config:SocketIoConfig = {url:'http://localhost:8080',options:{}}
     SocketIoModule.forRoot(config),
 
   ],
-  providers: [],
+  providers: [
+     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

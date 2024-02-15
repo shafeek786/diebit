@@ -1,43 +1,55 @@
-<div class="content-body">
-  <div class="container-fluid">
+  
+
+  
+  <div class="content-body">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="user-list-card">
           <div class="user-card"
             [ngClass]="userList.email === selectedUser?.email ? 'active' : ''"
             (click)="selectUserHandler(userList._id)">
             <img [src]="userList.proPic[0]" [alt]="userList.firstName" class="avatar" />
             <p class="username">{{userList.firstName}}</p>
-            <p>{{ unreadCount }}</p>
+            <p>{{ userList.unreadMessageCount }}</p>
             
 
           </div>
         </div>
       </div>
-      <div class="col-md-8">
-        <div class="chat-container">
+      <div class="col-md-6">
+        <div class="chat-container"  >
           <ng-container *ngIf="selectedUser">
             <div class="chat-header">
-              <img [src]="selectedUser.proPic" [alt]="selectedUser?.name" class="avatar" />
-              <p class="username">{{selectedUser.firstName}}</p>
+              <img src="assets/img/man (1).png"  class="avatar" />
+              <p class="username">{{selectedUser?.name}}</p>
+             
             </div>
-            <div class="chat-body">
+            <div class="chat-body"  #chatContainer>
               <div *ngFor="let item of storageArray; let i = index">
-                <div [ngClass]="{'chat-message': true, 'same-user': item.sender === currentUser, 'bg-color1': i % 2 === 0, 'bg-color2': i % 2 !== 0}">
-                  <p class="message-content">{{ item.content }}</p>
-                  <p class="message-time">{{ item.createdAt | date: 'hh:mm a' }}</p>
-                </div>
+                <ng-container *ngIf="item.sender === currentUser; else receiverMessage">
+                  <div class="sender-message">
+                    <div class="message-container">
+                      <p class="message-content">{{ item.content }}</p>
+                      <p class="message-time">{{ item.createdAt | date: 'hh:mm a' }}</p>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #receiverMessage>
+                  <div class="receiver-message">
+                    <div class="message-container">
+                      <p class="message-content">{{ item.content }}</p>
+                      <p class="message-time">{{ item.createdAt | date: 'hh:mm a' }}</p>
+                    </div>
+                  </div>
+                </ng-template>
               </div>
             </div>
+            
             <div class="chat-footer">
               <div class="row">
                 <div class="col-md-10">
                   <div class="form-group mb-0">
-                    <input type="text"
-                      placeholder="Type a message"
-                      class="form-control"
-                      [(ngModel)]="messageText"
-                      (keyup)="$event.keyCode === 13 && sendMessage()" />
+                    <input type="text" placeholder="Type a message" class="form-control" [(ngModel)]="messageText" (keyup)="$event.keyCode === 13 && sendMessage()" />
                   </div>
                 </div>
                 <div class="col-md-2 text-center align-self-center">
@@ -50,6 +62,4 @@
       </div>
     </div>
   </div>
-
   
-</div>

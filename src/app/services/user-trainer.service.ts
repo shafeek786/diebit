@@ -45,4 +45,12 @@ export class UserTrainerService {
     console.log("trainer check: "+ trainerId)
     return this.http.get<ApiResponse>(this.apiUrl+'/updateduserlist',{ params })
   }
+
+  searchTrainer(test:string):Observable<TrainerList>{
+    const params = new HttpParams().set('text', String(test))
+    return this.http.get<TrainerList>(this.apiUrl+'/searchtrainer', { params })
+  }
+  getblog():Observable<any>{
+    return this.http.get(this.apiUrl+'/getblogs')
+  }
 }

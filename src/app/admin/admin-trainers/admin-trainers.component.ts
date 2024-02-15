@@ -51,7 +51,7 @@ export class AdminTrainersComponent implements OnInit {
   }
   
 
-  displayedColumns: string[] = ['name', 'email', 'mobile', 'status', 'action'];
+  displayedColumns: string[] = ['name', 'email', 'mobile','certificate', 'status', 'action'];
 
   logout(): void {
     this.service.logout();

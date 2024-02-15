@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { signupData, loginData,trainerData } from 'src/app/interface/trainer-interface';
 import { Blog, Response } from 'src/app/interface/blog-interface';
-import { ApiResponse, UserInterface } from 'src/app/interface/user-interface';
+import { ApiResponse, UserInterface, UserData } from 'src/app/interface/user-interface';
 import { trainerId, userId } from '../../interface/admin-interface';
 
 @Injectable({
@@ -21,10 +21,14 @@ export class AuthService {
 
   apiUrl = 'http://localhost:8080/trainer';
 
-  signup(data:signupData ) {
-    console.log('signup');
-    return this.http.post(this.apiUrl + '/signup', data);
+  signup(data: any, file: File) {
+    console.log("service: ", data);
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(data));
+    formData.append('image', file, file.name);
+    return this.http.post(this.apiUrl + '/signup', formData);
   }
+  
 
   verifyLogin(data: loginData) {
     return this.http.post(this.apiUrl + '/verifylogin', data);
@@ -101,5 +105,14 @@ export class AuthService {
     const params = new HttpParams().set('roomId', String(roomId)).set('trainerId', String(trainerId))
 
     return  this.http.get(this.apiUrl+'/readmessage',{ params })
+  }
+
+  getSubscribedUser(trainerId:string):Observable<ApiResponse>{
+    const params = new HttpParams().set('trainerId', trainerId)
+    return this.http.get<ApiResponse>(this.apiUrl+'/getsubscribeduser',{ params})
+  }
+  getSubscribedUserSearch(trainerId:string,text:string):Observable<ApiResponse>{
+    const params = new HttpParams().set('trainerId', String(trainerId)).set('text', String(text))
+    return this.http.get<ApiResponse>(this.apiUrl+'/searchsubscribeduser',{ params})
   }
 }

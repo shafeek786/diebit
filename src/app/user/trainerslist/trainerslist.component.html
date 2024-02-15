@@ -1,22 +1,48 @@
-<div class="content-body">   
-    <!-- Subscribed Trainers -->
-    <div *ngIf="subscribedTrainer" class="section">
-        <h2>Subscribed Trainer </h2>
-        <div class="trainers-container">
-            <div class="trainer-card">
-                <img [src]="subscribedTrainer.proPic[0]" alt="Subscribed Trainer" >
-                <p>{{ subscribedTrainer.firstName }}</p>
+<!-- trainer-list.component.html -->
+
+<div class="content-body">  
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group stylish-input-group">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-primary dropdown-toggle filter-by-btn" data-toggle="dropdown">
+                            Filter by
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button class="dropdown-item" type="button" (click)="filterBy('gym_trainer')">Gym Trainer</button></li>
+                            <li><button class="dropdown-item" type="button" (click)="filterBy('Nutritionist')">Nutritionist</button></li>
+                            <li><button class="dropdown-item" type="button" (click)="filterBy('Yoga Master')">Yoga Master</button></li>
+                        </ul>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search term..." (input)="onSearchInputChange($event)">
+                    
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Subscribed Trainers -->
+   
+
     <!-- Trainer List -->
     <div class="section">
-        <h2> Trainers </h2>
+        <h2>Trainers</h2>
         <div class="trainers-container">
+            <p *ngIf="trainerData.length<1">No daata found</p>
             <div class="trainer-card" *ngFor="let trainer of trainerData">
                 <img [src]="trainer.proPic[0]" alt="Trainer" (click)="aboutTrainer(trainer._id)">
                 <p>{{ trainer.firstName }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="subscribedTrainer" class="section">
+        <h2>Subscribed Trainer</h2>
+        <div class="trainers-container">
+            <div class="trainer-card">
+                <img [src]="subscribedTrainer.proPic[0]" alt="Subscribed Trainer">
+                <p>{{ subscribedTrainer.firstName }}</p>
             </div>
         </div>
     </div>

@@ -1,0 +1,10 @@
+.subscribed-users-heading {
+    margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.heading-text {
+    color: #333; /* Set the color of the heading */
+    font-size: 24px; /* Set the font size of the heading */
+    font-weight: bold; /* Optionally set the font weight */
+    text-align: center; /* Align the heading text to the center */
+}

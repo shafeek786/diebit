@@ -25,7 +25,7 @@ export class TrainerLoginComponent implements OnInit {
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     interface ApiResponse {
       message: string,
       token: string
@@ -35,32 +35,33 @@ export class TrainerLoginComponent implements OnInit {
       (res: object) => {
         const apiResponse = res as ApiResponse;
         if (apiResponse.message === 'Success') {
-          console.log("loooooogin")
-          localStorage.setItem('TrainerToken', apiResponse.token)
-        interface userdata{
-          role:string
-        }
-
-        const dec:userdata =jwtDecode(apiResponse.token as string)
-        localStorage.setItem('role', dec.role)
-        console.log(localStorage.getItem('role'))
-      
-        console.log("ffff")
-        if(localStorage.getItem('role') === 'Trainer'){
-          console.log("in")
-          this.router.navigate(['trainer/dashboard']); 
-
-        }
-        
-          
-        } else if (apiResponse.message === 'You are blocked' || 
-        apiResponse.message === 'Invalid email ID or password' || 
-        apiResponse.message === 'User not found' ||
-        apiResponse.message === 'Please wait for the approvel') {
-          console.log("trianer")
+          localStorage.setItem('TrainerToken', apiResponse.token);
+  
+          // Decode the token to extract user role
+          const decodedToken = jwtDecode(apiResponse.token) as { role: string };
+  
+          // Store the user role in localStorage
+          localStorage.setItem('role', decodedToken.role);
+  
+          // Log the user role
+          console.log('User Role:', localStorage.getItem('role'));
+  
+          // Redirect based on user role
+          if (localStorage.getItem('role') === 'Trainer') {
+            this.router.navigate(['trainer/dashboard']);
+          } else {
+            // Handle other roles or scenarios if needed
+          }
+        } else {
+          // Handle error messages
           this.toastr.error(apiResponse.message);
         }
       },
+      (error) => {
+        // Handle errors that occur during the API request
+        console.error('Error:', error);
+        this.toastr.error('An error occurred. Please try again.');
+      }
     );
   }
 

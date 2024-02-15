@@ -45,7 +45,6 @@ check:number = 0
       .subscribe((data: { user: string; room: string; message: string }) => {
         if (this.roomId) {
           this.getUser()
-          this.readMessage(this.roomId,this.decodedToken.id)
           setTimeout(() => {
             this.chatService.getStorage(this.roomId).subscribe((res: any) => {
               console.log('res:' + res.chats);
@@ -96,6 +95,7 @@ check:number = 0
       });
   }
   selectUserHandler(userId: string): void {
+    this.getUser()
     this.selectedUser = this.userList.find((user) => user._id === userId);
     console.log('selected trainer: ' + this.selectedUser._id);
     this.readMessage(this.selectedUser._id,this.decodedToken.id)
@@ -104,11 +104,12 @@ check:number = 0
       .getroombyTrainer(this.decodedToken.id, this.selectedUser._id)
       .subscribe((res: any) => {
         this.roomId = res.roomDetails._id;
+        this.readMessage(this.roomId,this.decodedToken.id)
+
         this.chatService.getStorage(this.roomId).subscribe((res: any) => {
           this.storageArray = res.chats;
         });
       });
-      this.readMessage(this.roomId,this.decodedToken.id)
 
 
     const storeIndex = this.storageArray.findIndex(

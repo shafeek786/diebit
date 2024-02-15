@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
-import { AuthService } from 'src/app/trainer/service/auth.service';
+import { UserTrainerService } from 'src/app/services/user-trainer.service';
+
 
 interface blog {
   title:string,
@@ -18,15 +19,17 @@ interface token{
 })
 export class UserBlogsComponent {
   blogs:blog[] = []
-  decodedToken:token = jwtDecode(localStorage.getItem('TrainerToken') as string)
+  decodedToken:token = jwtDecode(localStorage.getItem('token') as string)
 
 
-  constructor(private service: AuthService,
+  constructor(private service: UserTrainerService,
     ){}
 
 ngOnInit(): void {
 console.log("blog")
-this.service.getblog(this.decodedToken.id).subscribe((res:any)=>{
+console.log(window.location.pathname);
+
+this.service.getblog().subscribe((res:any)=>{
 this.blogs = res.blogs
 })
 }

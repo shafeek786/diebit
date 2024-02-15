@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { jwtDecode } from 'jwt-decode';
 import { Trainer, trainerData } from 'src/app/interface/trainer-interface';
@@ -39,6 +39,16 @@ export class UserChatComponent implements OnInit {
     private SharedChatService:SharedChatService,
     private service: AuthService
   ) {}
+  @ViewChild('chatContainer', { static: false }) chatContainer!: ElementRef;
+
+  scrollToBottom(): void {
+    try {
+      console.log("Before scroll:", this.chatContainer.nativeElement.scrollTop, this.chatContainer.nativeElement.scrollHeight);
+      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+      console.log("After scroll:", this.chatContainer.nativeElement.scrollTop, this.chatContainer.nativeElement.scrollHeight);
+      
+    } catch(err) { }
+  }
 
   ngOnInit(): void {
     this.decodedToken = jwtDecode(localStorage.getItem('token') as string);
@@ -46,6 +56,7 @@ export class UserChatComponent implements OnInit {
     this.currentUser = this.decodedToken.id;
     this.getTrainer();
     this.getUserUpdate()
+   
    
 
     console.log("Before subscribing to trainerList$");
@@ -59,7 +70,7 @@ export class UserChatComponent implements OnInit {
       .subscribe((data: { user: string; room: string; message: string }) => {
         if (this.roomId) {
               this.getTrainer()
-              this.readMessage(this.roomId,this.decodedToken.id)
+           
 
           setTimeout(() => {
             this.getUserUpdate()
@@ -119,6 +130,10 @@ export class UserChatComponent implements OnInit {
 
   
   selectUserHandler(trainerId: string): void {
+    this.scrollToBottom()
+
+    this.getTrainer()
+
     this.selectedUser = this.userList._id
     console.log('selected trainer: ' + this.selectedUser
     );

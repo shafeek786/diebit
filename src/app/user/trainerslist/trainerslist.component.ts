@@ -18,6 +18,8 @@ import { signupData, trainerData } from 'src/app/interface/trainer-interface';
 export class TrainerslistComponent implements OnInit {
   subscribedTrainer!: Trainer 
   decodedToken!: tokenData
+  searchText!:string
+  selectedProfession!:string
     constructor(private trainerService: UserTrainerService,
                 private dialog: MatDialog,
                 private traienrSharedService: TrainerSharedService
@@ -47,7 +49,18 @@ export class TrainerslistComponent implements OnInit {
           this.trainerData = res.trainerData
       })
   }
+  onSearchInputChange(event:any){
 
+    console.log(event)
+    this.trainerService.searchTrainer(event.target.value).subscribe((res:TrainerList)=>{
+      this.trainerData = res.trainerData
+    })
+  }
+  filterBy(text:string){
+    this.trainerService.searchTrainer(text).subscribe((res:TrainerList)=>{
+      this.trainerData = res.trainerData
+    })
+  }
   aboutTrainer(trainerId:string){
     this.dialog.open(TrainerDetailComponent,{
       width: '100%',

@@ -21,30 +21,33 @@
                     <div class="col">
                         <label for="">First Name:</label>
                         <input type="text" class="form-control" formControlName="firstName">
+                        <span *ngIf="signupForm.get('firstName')?.touched">
+                          <span class="error-message" *ngIf="signupForm.get('firstName')?.hasError('required')">
+                            Please enter first name
+                          </span>
+                        </span>
                     </div>
                     <div class="col">
-                        <label for="">Last Name:</label>
-                        <input type="text" class="form-control" formControlName="lastName">
+                      <label for="">Last Name:</label>
+                      <input type="text" class="form-control" formControlName="lastName">
+                      <span *ngIf="signupForm.get('lastName')?.touched">
+                        <span class="error-message" *ngIf="signupForm.get('lastName')?.hasError('required')">
+                          Please enter first name
+                        </span>
+                      </span>
                     </div>
                 </div>
             </div>
-            <span *ngIf="signupForm.get('name')?.touched && !signupForm.get('firstName')?.valid">
-                <span *ngIf="signupForm.get('name')?.errors?.['nameIsForbidden']">
-                    This name is invalid
-                  </span>
-                  <span *ngIf="signupForm.get('name')?.errors?.['required']" >
-                    Please enter name
-                  </span>
-            </span>
+           
             
             <div class="form-group">
                 <label for="">E-mail:</label>
                 <input type="text" class="form-control" formControlName="email" id="email">
                 <span *ngIf="signupForm.get('email')?.touched">
-                    <span *ngIf="signupForm.get('email')?.hasError('email')">
+                    <span class="error-message" *ngIf="signupForm.get('email')?.hasError('email')">
                       Please enter a valid email address
                     </span>
-                    <span *ngIf="signupForm.get('email')?.hasError('required')">
+                    <span class="error-message" *ngIf="signupForm.get('email')?.hasError('required')">
                       Please enter an email address
                     </span>
                   </span>
@@ -54,10 +57,10 @@
                 <label for="">Mobile Number</label>
                 <input type="text" class="form-control" formControlName="mobileNumber">
                 <span *ngIf="signupForm.get('mobileNumber')?.touched">
-                    <span *ngIf="signupForm.get('mobileNumber')?.hasError('pattern')">
+                    <span class="error-message" *ngIf="signupForm.get('mobileNumber')?.hasError('pattern')">
                       Please enter a valid mobile number
                     </span>
-                    <span *ngIf="signupForm.get('mobileNumber')?.hasError('required')">
+                    <span class="error-message" *ngIf="signupForm.get('mobileNumber')?.hasError('required')">
                       Please enter mobile number address
                     </span>
                   </span>
@@ -66,31 +69,54 @@
             <div class="form-group">
                 <label for="">Qualification</label>
                 <input type="text" class="form-control" formControlName="qualification">
-                <span *ngIf="signupForm.get('name')?.touched && !signupForm.get('qualification')?.valid">
-                      <span *ngIf="signupForm.get('qualification')?.errors?.['required']" >
-                        Please enter name
-                      </span>
+                <span *ngIf="signupForm.get('qualification')?.touched">
+                  <span class="error-message" *ngIf="signupForm.get('qualification')?.hasError('required')">
+                    Please enter your qualification
+                  </span>
                 </span>
             </div>
 
             <div class="form-group">
+              <label for="">Profession:</label>
+              <select class="form-control" formControlName="profession">
+                  <option value="nutritionist">Nutritionist</option>
+                  <option value="Gym trainer">Gym Trainer</option>
+                  <option value="Yoga 
+                  trainer">Yoga Trainer</option>
+              </select>
+              <span *ngIf="signupForm.get('profession')?.touched">
+                <span class="error-message" *ngIf="signupForm.get('profession')?.hasError('required')">
+                  Please select your profession
+                </span>
+              </span>
+          </div>
+
+          <div class="form-group">
+            <label for="">Certificate:</label>
+            <input type="file" class="form-control-file" formControlName="certificate" (change)="onFileSelected($event)">
+            <span class="error-message" *ngIf="signupForm.get('certificate')?.touched && signupForm.get('certificate')?.hasError('required')">
+                Please select a certificate file
+            </span>
+        </div>
+
+            <div class="form-group">
                 <label for="">Year of Experience</label>
                 <input type="text" class="form-control" formControlName="yearsofexperience">
-                <span *ngIf="signupForm.get('name')?.touched && !signupForm.get('yearsofexperience')?.valid">
-                    <span *ngIf="signupForm.get('qualification')?.errors?.['required']" >
-                      Please enter name
+                <span class="error-message" *ngIf="signupForm.get('yearsofexperience')?.touched">
+                    <span error-message *ngIf="signupForm.get('yearsofexperience')?.hasError('required')">
+                      Please enter experience year
                     </span>
-              </span>
+                  </span>
             </div>
            
             <div class="form-group">
                 <label for="">Password:</label>
                 <input type="password" class="form-control" formControlName="password">
                 <span *ngIf="signupForm.get('password')?.touched">
-                  <span *ngIf="signupForm.get('password')?.hasError('minlength')">
+                  <span class="error-message" *ngIf="signupForm.get('password')?.hasError('minlength')">
                     Password must be at least 6 characters long
                 </span>
-                    <span *ngIf="signupForm.get('password')?.hasError('required')">
+                    <span class="error-message" *ngIf="signupForm.get('password')?.hasError('required')">
                       Please enter password
                     </span>
                   </span>
@@ -100,18 +126,18 @@
                 <label for="">Confirm Password:</label>
                 <input type="password" class="form-control" formControlName="confirmPassword">
                 <span *ngIf="signupForm.get('confirmPassword')?.touched">
-                    <span *ngIf="signupForm.hasError('passwordMismatch')">
-                      Please do not match
+                    <span class="error-message" *ngIf="signupForm.hasError('passwordMismatch')">
+                      Pssword do not match
                     </span>
-                    <span *ngIf="signupForm.get('confirmPassword')?.hasError('required')">
+                    <span class="error-message" *ngIf="signupForm.get('confirmPassword')?.hasError('required')">
                       Please enter confirm password
                     </span>
                   </span>
             </div>
           
             
-            <button class="primary-btn" type="submit"  >Signup</button>
-        </form>
+            <button class="btn primary-btn" type="submit" [disabled]="!signupForm.valid">Signup</button>
+          </form>
     </div>
 </section>
 

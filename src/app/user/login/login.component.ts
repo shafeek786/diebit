@@ -7,6 +7,9 @@ import { jwtDecode } from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
+import { ApiResponse } from '../../interface/admin-interface';
+import { tokenData } from '../../interface/tokenInterface';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -42,7 +45,11 @@ export class LoginComponent {
           const apiResponse = res as ApiResponse;
           if (apiResponse.message === 'Success') {
             console.log("loooooogin")
-            localStorage.setItem('token', apiResponse.token)
+            console.log("user token : "+apiResponse.token )
+            localStorage.setItem('token', apiResponse.token);
+            const decodedToken = jwtDecode(apiResponse.token);
+
+            
           interface userdata{
             role:string
           }
