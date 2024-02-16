@@ -33,6 +33,7 @@ export class VideocallComponent {
   videoCamera: boolean = true;
   mentorCallStarted: boolean = false;
   callAccepted: boolean = false;
+  callPending : boolean = false
 
   @ViewChild('local_video') localVideo!: ElementRef
   @ViewChild('received_video') remoteVideo!: ElementRef;
@@ -152,16 +153,37 @@ export class VideocallComponent {
               // Handling the calling
               async handleCallMentee() {
                 try {
-                  const offer = await this.peerService.getOffer();
-                  this.socketService.emitUserCall({
-                    to: this.remoteSocketId,
-                    offer: offer,
-                  });
-                  console.log('Call offer send successfully');
+                    if (!this.callPending) { // Check if call is not pending
+                        const offer = await this.peerService.getOffer();
+                        this.socketService.emitUserCall({
+                            to: this.remoteSocketId,
+                            offer: offer,
+                        });
+                        this.callPending = true; // Set callPending to true
+                        console.log('Call offer sent successfully');
+                    } else {
+                        console.log('Call is already pending or ongoing');
+                    }
                 } catch (error) {
-                  console.error('Handle call error:', error);
+                    console.error('Handle call error:', error);
                 }
+            }
+            async answerCall() {
+              try {
+                 
+                      const offer = await this.peerService.getOffer();
+                      this.socketService.emitUserCall({
+                          to: this.remoteSocketId,
+                          offer: offer,
+                      });
+                      this.callPending = true; // Set callPending to true
+                      console.log('Call offer sent successfully');
+                 
+              } catch (error) {
+                  console.error('Handle call error:', error);
               }
+          }
+            
             
               sendStream(): void {
                 for (const track of this.localStream.getTracks()) {

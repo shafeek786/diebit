@@ -47,7 +47,7 @@
       </div>
 
       <!-- Start button in mentee -->
-      <div  (click)="handleCallMentee()" *ngIf="remoteSocketId && role === 'user' && mentorCallStarted" class="w-14 h-14 border border-solid border-success rounded-circle cursor-pointer d-flex align-items-center justify-content-center">
+      <div  (click)="answerCall()" *ngIf="remoteSocketId && role === 'user' && mentorCallStarted" class="w-14 h-14 border border-solid border-success rounded-circle cursor-pointer d-flex align-items-center justify-content-center">
          <span  class="text-success"><i class="fa-solid fa-s"></i></span> 
       </div>
 

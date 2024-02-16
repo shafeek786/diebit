@@ -1,9 +1,13 @@
 <div class="mat-elevation-z8">
+  <div class="search-container">
     <mat-form-field>
       <input type="text" matInput placeholder="Search" (input)="onSearchInputChange($event)">
     </mat-form-field>
   
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <button mat-raised-button color="primary" [routerLink]="'/admin/addfood'">Add Food</button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   
       <!-- Position Column -->
       <ng-container matColumnDef="name">

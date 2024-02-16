@@ -24,4 +24,9 @@ export const navbarData = [
     icon: 'fa-regular fa-comments',
     label: 'Chat',
   },
+  {
+    routeLink: '/trainer/payment',
+    icon: 'fa-solid fa-money-bill',
+    label: 'Payments',
+  },
 ];

@@ -1,0 +1,10 @@
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .search-container > * {
+    margin-right: 10px; /* Adjust as needed */
+  }
+  
