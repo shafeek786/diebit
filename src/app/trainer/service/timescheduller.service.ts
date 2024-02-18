@@ -17,7 +17,7 @@ export class TimeschedullerService {
     private snackbar: MatSnackBar
   ) {}
 
-  apiUrl = 'http://localhost:8080/trainer';
+  apiUrl = 'https://diebit.world/api/trainer';
 
   addSlot(trainerId:string, date:Date,timeSlot:string):Observable<TimeslotData>{
     

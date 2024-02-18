@@ -4,6 +4,7 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   NgZone,
+  OnDestroy,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { jwtDecode } from 'jwt-decode';
@@ -20,7 +21,8 @@ import { WorkoutListComponent } from 'src/app/user/workout-list/workout-list.com
 import { WorkoutHistory, workout } from '../../interface/workout-interface';
 import { PlanserviceService } from 'src/app/services/planservice.service';
 import { SubscriptionStatus } from 'src/app/interface/plan-interface';
-import { isSubscription } from 'rxjs/internal/Subscription';
+import {  isSubscription } from 'rxjs/internal/Subscription';
+import { Subscription } from 'rxjs'
 interface tokenData {
   id: string;
   name: string;
@@ -46,7 +48,8 @@ interface userData {
   styleUrls: ['./tracker.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TrackerComponent implements OnInit {
+export class TrackerComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription[] = [];
   selectedDate: Date = new Date();
   bsConfig: Partial<BsDatepickerConfig>;
   today = 'today';
@@ -118,14 +121,19 @@ export class TrackerComponent implements OnInit {
         this.cdr.detectChanges();
       });
 
-    this.sharedService.consumedCalories$.subscribe(
-      (consumedCalories: number) => {
-        this.consumedCalories = consumedCalories;
-        this.consumeCalories();
-        this.calculateBMR();
-        this.cdr.detectChanges();
-      }
-    );
+      this.subscriptions.push(
+        this.sharedService.consumedCalories$.subscribe(
+          (consumedCalories: number) => {
+            this.consumedCalories = consumedCalories;
+            this.consumeCalories();
+            this.calculateBMR();
+            this.cdr.detectChanges();
+          }
+        )
+      )
+
+   
+   
     this.sharedService.foodHistory$.subscribe((foodHistory: foodHistory[]) => {
       this.dailyFoodHistory = foodHistory;
       this.updateMergedData();
@@ -659,5 +667,9 @@ export class TrackerComponent implements OnInit {
       },
       plugins: centerText as any, // Explicitly cast centerText to 'any'
     });
+  }
+
+  ngOnDestroy(): void {
+      this.subscriptions.forEach(sub => sub.unsubscribe())
   }
 }

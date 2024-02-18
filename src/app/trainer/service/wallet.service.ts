@@ -8,7 +8,7 @@ export class WalletService {
 
   constructor(private http: HttpClient) { }
 
-  apiUrl = 'http://localhost:8080/trainer';
+  apiUrl = 'https://diebit.world/api/trainer';
 
   getWalletBalance(trainerId:string){
     const params = new HttpParams().set('trainerId',String(trainerId))

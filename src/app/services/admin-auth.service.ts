@@ -14,7 +14,7 @@ export class AdminAuthService {
   constructor(private http: HttpClient,
               private router:Router) { }
 
-  apiUrl = 'http://localhost:8080/admin'
+  apiUrl = 'https://diebit.world/api/admin'
 
   verifyLogin(data:loginData){
     return this.http.post(this.apiUrl+'/verifylogin',data)

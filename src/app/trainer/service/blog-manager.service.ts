@@ -7,7 +7,7 @@ import { Blog, Response, ResponseById } from 'src/app/interface/blog-interface';
   providedIn: 'root'
 })
 export class BlogManagerService {
-  apiUrl = 'http://localhost:8080/trainer';
+  apiUrl = 'https://diebit.world/api/trainer';
   constructor(private http: HttpClient,
               ) { }
 

@@ -13,8 +13,8 @@ export class PlanserviceService {
   constructor(private http:HttpClient,
     private router:Router 
     ) { }
-apiUrl = 'http://localhost:8080'
-adminapiurl = 'http://localhost:8080/admin'
+apiUrl = 'https://diebit.world/api'
+adminapiurl = 'https://diebit.world/api/admin'
 
 
 
