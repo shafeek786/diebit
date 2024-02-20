@@ -748,6 +748,9 @@ Apache-2.0
  
 
 
+slicknav
+MIT
+
 socket.io-client
 
 socket.io-parser
