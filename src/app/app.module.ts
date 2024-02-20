@@ -8,6 +8,8 @@ import { TrainerRoutingModule } from './route/trainer-routing/trainer-routing.mo
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './service/token-interceptor.interceptor'; 
+import * as $ from 'jquery';
+import 'slicknav/dist/jquery.slicknav.min.js';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -96,8 +98,8 @@ import { TrainervideocallComponent } from './trainer/trainervideocall/trainervid
 import { MatGridListModule} from '@angular/material/grid-list';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { VideocallComponent } from './videocall/videocall.component'
-
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon'
 
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { TrainerEditBlogComponent } from './trainer/trainer-edit-blog/trainer-edit-blog.component';
@@ -186,6 +188,8 @@ const config:SocketIoConfig = {url:'http://localhost:8080',options:{}}
   ],
   imports: [
     BrowserModule,
+    MatMenuModule,
+    MatIconModule,
     RouterModule,
     AppRoutingModule,
     AdminRaoutingModule,

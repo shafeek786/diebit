@@ -10,9 +10,9 @@ export class InterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const userToken = localStorage.getItem('token');
-    const trainerToken = localStorage.getItem('trainerToken');
+    const trainerToken = localStorage.getItem('TrainerToken');
     const adminToken = localStorage.getItem('adminToken');
-  
+  console.log("trainer token: "+ trainerToken)
     console.log('Current URL path:', window.location.pathname);
 
     if (window.location.pathname.includes('/trainer') && trainerToken) {

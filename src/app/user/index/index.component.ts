@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-index',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent {
+
+
   classes = [
     { name: 'Yoga', instructor: 'Ryan Knight', image: 'assets/img/classes/classes-1.jpg' },
     { name: 'Karate', instructor: 'Kevin McCormick', image: 'assets/img/classes/classes-4.jpg' },
