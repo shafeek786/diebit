@@ -52,7 +52,7 @@ export class VideocallComponent {
               ngOnInit(): void {
 
     
-                this.decodedToken = jwtDecode(localStorage.getItem('token') as string)
+               // this.decodedToken = jwtDecode(localStorage.getItem('token') as string)
                 this.role = this.route.snapshot.paramMap.get('role')!
                 console.log("url role: "+ this.role)
                 this.bookingId = history.state.bookingId;
