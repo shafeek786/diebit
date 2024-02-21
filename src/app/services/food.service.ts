@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class FoodService {
 
   constructor(private http:HttpClient) { }
-  apiUrl = 'https://diebit.world/api/admin'
+  apiUrl = 'https://bknd.diebit.world/api/admin'
 
   loadFood(){
     return this.http.get(this.apiUrl+'/loadfood')

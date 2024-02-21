@@ -19,7 +19,7 @@ export class AuthService {
     private snackbar: MatSnackBar
   ) {}
 
-  apiUrl = 'https://diebit.world/api/trainer';
+  apiUrl = 'https://bknd.diebit.world/api/trainer';
 
   signup(data: any, file: File) {
     console.log("service: ", data);

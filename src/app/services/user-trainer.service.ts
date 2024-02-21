@@ -14,7 +14,7 @@ export class UserTrainerService {
 
   constructor(private http: HttpClient,
               private router: Router) { }
-      apiUrl = 'https://diebit.world/api'
+      apiUrl = 'https://bknd.diebit.world/api'
 
   getTrainers():Observable<TrainerList>{
     return this.http.get<TrainerList>(this.apiUrl+'/gettrianers')

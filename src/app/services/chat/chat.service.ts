@@ -10,9 +10,10 @@ import { userId, trainerId } from '../../interface/admin-interface';
 })
 export class ChatService {
   private socket!: Socket;
-  private url = 'https://diebit.world/api';
+  private url = 'https://bknd.diebit.world/api';
+  private surl = 'https://bknd.diebit.world'
   constructor(private http : HttpClient) {
-    this.socket = io(this.url, {transports: ['websocket', 'polling', 'flashsocket']});
+    this.socket = io(this.surl, {transports: ['websocket', 'polling', 'flashsocket']});
   }
 
   joinRoom(data: { userId: string; trainerId: string;

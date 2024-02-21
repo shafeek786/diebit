@@ -13,8 +13,8 @@ export class PlanserviceService {
   constructor(private http:HttpClient,
     private router:Router 
     ) { }
-apiUrl = 'https://diebit.world/api'
-adminapiurl = 'https://diebit.world/api/admin'
+apiUrl = 'https://bknd.diebit.world/api'
+adminapiurl = 'https://bknd.diebit.world/api/admin'
 
 
 

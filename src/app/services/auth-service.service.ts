@@ -21,7 +21,7 @@ export class AuthServiceService {
     private snackbar: MatSnackBar,
     private caloriesService: SharedCaloriesService 
     ) { }
-apiUrl = 'https://diebit.world/api'
+apiUrl = 'https://bknd.diebit.world/api'
 
 proceedRegister(userdata:UserSignupData){
 console.log("value")

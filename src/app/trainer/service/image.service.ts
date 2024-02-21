@@ -11,7 +11,7 @@ export class ImageService {
 
   constructor(private http: HttpClient,
               private Router: Router) { }
-      apiUrl = 'https://diebit.world/api/trainer';
+      apiUrl = 'https://bknd.diebit.world/api/trainer';
 
      uploadProfilePic(trainerId: string, image: File): Observable<trainerData> {
     const formData: FormData = new FormData();
