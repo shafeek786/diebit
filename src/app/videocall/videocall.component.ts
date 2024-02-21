@@ -54,6 +54,7 @@ export class VideocallComponent {
     
                 this.decodedToken = jwtDecode(localStorage.getItem('token') as string)
                 this.role = this.route.snapshot.paramMap.get('role')!
+                console.log("url role: "+ this.role)
                 this.bookingId = history.state.bookingId;
                 this.menteeId = this.route.snapshot.paramMap.get('trainerId')!;
 
