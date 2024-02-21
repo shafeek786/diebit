@@ -1,0 +1,30 @@
+/* Style for the dropdown menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff; /* Background color of the dropdown */
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 0.25rem; /* Border radius */
+    display: none; /* Hide the menu by default */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Show the dropdown menu when its parent is hovered or focused */
+.header-profile:hover .dropdown-menu,
+.header-profile:focus-within .dropdown-menu {
+    display: block;
+}
+
+/* Style for dropdown items */
+.dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #212529; /* Text color */
+    text-decoration: none;
+}
+
+/* Style for dropdown items on hover */
+.dropdown-menu a:hover {
+    background-color: #f8f9fa; /* Background color on hover */
+}

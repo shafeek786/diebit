@@ -11,7 +11,7 @@ export class SocketService {
 
   constructor() {
     const config: SocketIoConfig = {
-      url: 'http://localhost:8080',
+      url: 'https://diebit.world',
       options: {},
     };
     this.socket = io(config.url, config.options);

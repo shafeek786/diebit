@@ -89,20 +89,41 @@ hideChangeImageText() {
   }
 
   uploadImage() {
-    console.log("imnage")
+    console.log("image upload function called");
+    
     if (this.selectedFile && this.decodedTrianerToken.id) {
-      this.imageService.uploadProfilePic(this.decodedTrianerToken.id, this.selectedFile).subscribe((res: trainerData) => {
-        if (res.message === 'File size too large. Maximum is 10MB.') {
-          console.log(res.message)
-          this.snackBar.open(res.message, 'Close', {
+      this.imageService.uploadProfilePic(this.decodedTrianerToken.id, this.selectedFile).subscribe(
+        (res: trainerData) => {
+          // Check if the response contains an error message
+          if (res.message === 'File size too large. Maximum is 1MB.') {
+            console.log(res.message);
+            // Display a snackbar message to the user
+            this.snackBar.open(res.message, 'Close', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+            });
+          } else {
+            // Update UI with the uploaded image
+            this.trainer = res.trainerData;
+            this.imageSrc = this.trainer.proPic[0];
+            console.log(this.imageSrc);
+          }
+        },
+        (error) => {
+          // Handle HTTP errors
+          console.error('Error occurred:', error);
+          this.toastr.error("image size is too large")
+          // Display a snackbar message to the user for generic HTTP errors
+          this.snackBar.open('An error occurred while uploading the image.', 'Close', {
             duration: 3000,
-            verticalPosition:'top',
-            horizontalPosition:'center'
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
           });
-        }        this.trainer = res.trainerData
-          this.imageSrc = this.trainer.proPic[0]
-          console.log(this.imageSrc)
-      });
+        }
+      );
+
     }
   }
+  
 }

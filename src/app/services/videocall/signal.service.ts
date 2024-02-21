@@ -6,7 +6,7 @@ import { io,Socket } from 'socket.io-client'
 export class SignalService {
 
   private socket!: Socket;
-  private url = 'http://localhost:8080';
+  private url = 'https://diebit.world';
   constructor() {
     this.socket =  io(this.url, {transports: ['websocket', 'polling', 'flashsocket']});
   }
