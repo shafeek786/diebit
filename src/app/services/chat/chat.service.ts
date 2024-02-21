@@ -10,7 +10,7 @@ import { userId, trainerId } from '../../interface/admin-interface';
 })
 export class ChatService {
   private socket!: Socket;
-  private url = 'https://diebit.world';
+  private url = 'https://diebit.world/api';
   constructor(private http : HttpClient) {
     this.socket = io(this.url, {transports: ['websocket', 'polling', 'flashsocket']});
   }
