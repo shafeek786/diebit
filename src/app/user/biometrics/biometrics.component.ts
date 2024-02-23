@@ -34,7 +34,7 @@ export class BiometricsComponent {
   console.log(dec)
   this.service.updateProfile({id:dec.id,userData:this.updateFrofileForm.value}).subscribe((res:ApiResponse)=>{
       if(res.message === 'success'){
-        this.dialogRef.close
+        this.dialogRef.close()
         this.router.navigate(['dashboard'])
       }
   })

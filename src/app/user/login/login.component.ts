@@ -39,7 +39,7 @@ export class LoginComponent {
         message: string,
         token: string
       }
-    
+    console.log(this.loginForm.value)
       this.service.verifyLogin(this.loginForm.value).subscribe(
         (res: object) => {
           const apiResponse = res as ApiResponse;
@@ -67,8 +67,9 @@ export class LoginComponent {
           }
           
             
-          } else if (apiResponse.message === 'You are blocked' || apiResponse.message === 'Invalid email ID or password' || apiResponse.message === 'User not found') {
-           this.toastr.error(apiResponse.message);
+          } else if (apiResponse.message === 'You are blocked' || apiResponse.message === 'Wrong email ID or password' || apiResponse.message === 'User not found') {
+           console.log("invalid")
+            this.toastr.error(apiResponse.message);
           }
         },
         (error) => {

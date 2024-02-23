@@ -50,4 +50,9 @@ export class WeightupdateComponent implements OnInit {
     });
     this.dialogRef.close();
   }
+
+  closeDialog(){
+    console.log("close")
+    this.dialogRef.close()
+  }
 }

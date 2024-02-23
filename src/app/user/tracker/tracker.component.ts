@@ -657,7 +657,7 @@ export class TrackerComponent implements OnInit, OnDestroy {
           },
           title: {
             display: true,
-            text: 'Consumed',
+            text: 'Remaining',
             font: {
               size: 18,
             },

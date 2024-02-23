@@ -1,6 +1,7 @@
 /* trainer-dashboard.component.css */
 .content-body{
   min-height: 600px;
+  min-height: 100vh;
 }
 .weight-update-link {
     display: inline-block;
@@ -66,7 +67,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px; 
-    padding: 0 60vh 0 20vh;
+    padding: 0 30vh 0 30vh;
   }
   
   .chart {
@@ -92,3 +93,39 @@
     align-items: center;
   }
  
+
+  /* For small devices (phones) */
+@media only screen and (max-width: 600px) {
+  .calender {
+    margin: 0 auto; /* Center align the calendar */
+    padding: 0 30px;
+  }
+  .col-md-2 {
+    width: auto;
+    margin-left: 0;
+    margin-right: auto; /* Center align the datepicker input */
+  }
+  .weight-update-link {
+    padding: 15px;
+  }
+  .chart-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5%;
+  }
+  .chart {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+ 
+}
+
+/* For medium devices (tablets) */
+@media only screen and (min-width: 600px) and (max-width: 992px) {
+  /* Add your styles for medium devices here */
+}
+
+/* For large devices (desktops) */
+@media only screen and (min-width: 992px) {
+  /* Add your styles for large devices here */
+}

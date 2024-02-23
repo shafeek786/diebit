@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FoodService } from 'src/app/services/food.service';
 import { FoodtoUserComponent } from '../foodto-user/foodto-user.component';
 import { TrackerComponent } from '../tracker/tracker.component';
@@ -25,7 +25,8 @@ export class AddfoddComponent implements OnInit {
   dialogRef: any;
 
   constructor(private service: FoodService,
-              private dialog: MatDialog) {}
+              private dialog: MatDialog,
+              private dialogReff: MatDialogRef<AddfoddComponent>) {}
 
   ngOnInit(): void {
     this.loadFood();
@@ -68,5 +69,10 @@ export class AddfoddComponent implements OnInit {
         this.selectedFood = null;
       });
     }
+  }
+
+  closeDialog(){
+    console.log("close")
+    this.dialogReff.close()
   }
 }

@@ -14,91 +14,113 @@
     </a>
   </div>
   <div *ngIf="isSusbscribed">
-  <div class="calender">
-    <div class="input-group">
-      <a class="btn btn-outline-secondary" (click)="changeDate(-1)">
-        <i class="fa-solid fa-backward"></i>
-      </a>
-      <span class="input-group-text">
-        <i class="fa-regular fa-calendar-days"></i>
-      </span>
-      <div class="col-md-2">
-        <input
-          id="datepicker"
-          type="text"
-          class="form-control"
-          bsDatepicker
-          [(bsValue)]="selectedDate"
-          [bsConfig]="bsConfig"
-          [value]="getFormattedDate()"
-          (bsValueChange)="changeDate(0)"
-        />
-      </div>
-      <a class="btn btn-outline-secondary" (click)="changeDate(1)">
-        <i class="fa-solid fa-forward"></i>
-      </a>
-    </div>
-  </div>
-
-  <div class="merged-history">
-    <h3 *ngIf="mergedData.length === 0">Merged History is empty</h3>
-    <ul class="list-group" *ngIf="dailyFoodHistory.length > 0 || weightHistory.length > 0 || WorkoutHistory.length > 0">
-      <li *ngFor="let entry of mergedData" class="list-group-item">
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <span *ngIf="entry.type === 'weight'">
-              <i class="fa-solid fa-heart-pulse"></i>
-            </span>
-            <span *ngIf="entry.type === 'food'">
-              <i class="fa-solid fa-apple-whole"></i>
-            </span>
-            <span *ngIf="entry.type === 'workout'">
-              <i class="fa-solid fa-person-walking"></i>
-            </span>
-            <span>{{ entry.name }}</span>
-          </div>
-          <div class="col-md-6 d-flex justify-content-end align-items-center">
-            <span *ngIf="entry.quantity">{{ entry.quantity }} </span>
-            <span *ngIf="entry.servingSize">{{ entry.servingSize }} g</span>
-            <span *ngIf="entry.calories">{{ entry.calories * entry.quantity }} kcal</span>
-            <span *ngIf="entry.weight">{{ entry.weight }} {{ entry.unit }} </span>
-            <span *ngIf="entry.effortLevel">{{ entry.effortLevel }}</span>
-            <span *ngIf="entry.duration">{{entry.duration}} min</span>
-            <span *ngIf="entry.burnedCalories">{{entry.burnedCalories}} kcal</span>
-           
-            
-            <!-- Add close button with a click event to remove the entry -->
-            <button (click)="removeFoodMergedEntry(entry._id)" *ngIf="entry.type === 'food'" class="btn btn-danger">
-              <i class="fa-solid fa-times"></i>
-            </button>
-            <button (click)="removeWeightMergedEntry(entry._id)" *ngIf="entry.type === 'weight'" class="btn btn-danger">
-              <i class="fa-solid fa-times"></i>
-            </button>
-            <button (click)="removeWorkoutMergedEntry(entry._id)" *ngIf="entry.type === 'workout'" class="btn btn-danger">
-              <i class="fa-solid fa-times"></i>
-            </button>
-          </div>
+    <div class="calender">
+      <div class="input-group">
+        <a class="btn btn-outline-secondary" (click)="changeDate(-1)">
+          <i class="fa-solid fa-backward"></i>
+        </a>
+        <span class="input-group-text">
+          <i class="fa-regular fa-calendar-days"></i>
+        </span>
+        <div class="col-md-2">
+          <input
+            id="datepicker"
+            type="text"
+            class="form-control"
+            bsDatepicker
+            [(bsValue)]="selectedDate"
+            [bsConfig]="bsConfig"
+            [value]="getFormattedDate()"
+            (bsValueChange)="changeDate(0)"
+          />
         </div>
-      </li>
-    </ul>
-  </div>
-  
+        <a class="btn btn-outline-secondary" (click)="changeDate(1)">
+          <i class="fa-solid fa-forward"></i>
+        </a>
+      </div>
+    </div>
 
+    <div class="merged-history">
+      <h3 *ngIf="mergedData.length === 0">Merged History is empty</h3>
+      <ul
+        class="list-group"
+        *ngIf="
+          dailyFoodHistory.length > 0 ||
+          weightHistory.length > 0 ||
+          WorkoutHistory.length > 0
+        "
+      >
+        <li *ngFor="let entry of mergedData" class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <span *ngIf="entry.type === 'weight'">
+                <i class="fa-solid fa-heart-pulse"></i>
+              </span>
+              <span *ngIf="entry.type === 'food'">
+                <i class="fa-solid fa-apple-whole"></i>
+              </span>
+              <span *ngIf="entry.type === 'workout'">
+                <i class="fa-solid fa-person-walking"></i>
+              </span>
+              <span>{{ entry.name }}</span>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end align-items-center">
+              <span *ngIf="entry.quantity">{{ entry.quantity }} </span>
+              <span *ngIf="entry.servingSize">{{ entry.servingSize }} g</span>
+              <span *ngIf="entry.calories"
+                >{{ entry.calories * entry.quantity }} kcal</span
+              >
+              <span *ngIf="entry.weight"
+                >{{ entry.weight }} {{ entry.unit }}
+              </span>
+              <span *ngIf="entry.effortLevel">{{ entry.effortLevel }}</span>
+              <span *ngIf="entry.duration">{{ entry.duration }} min</span>
+              <span *ngIf="entry.burnedCalories"
+                >{{ entry.burnedCalories }} kcal</span
+              >
 
-  <!-- Chart -->
-  <div class="chart-container">
-    <div class="chart">
-      <canvas id="roundChart" width="150" height="150"></canvas>
+              <!-- Add close button with a click event to remove the entry -->
+              <button
+                (click)="removeFoodMergedEntry(entry._id)"
+                *ngIf="entry.type === 'food'"
+                class="btn btn-danger"
+              >
+                <i class="fa-solid fa-times"></i>
+              </button>
+              <button
+                (click)="removeWeightMergedEntry(entry._id)"
+                *ngIf="entry.type === 'weight'"
+                class="btn btn-danger"
+              >
+                <i class="fa-solid fa-times"></i>
+              </button>
+              <button
+                (click)="removeWorkoutMergedEntry(entry._id)"
+                *ngIf="entry.type === 'workout'"
+                class="btn btn-danger"
+              >
+                <i class="fa-solid fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="chart">
-      <canvas id="roundChart2" width="150" height="150"></canvas>
-    </div>
-    <div class="chart">
-      <canvas id="roundChart3" width="150" height="150"></canvas>
+
+    <!-- Chart -->
+    <div class="chart-container">
+      <div class="chart">
+        <canvas id="roundChart" width="150" height="150"></canvas>
+      </div>
+      <div class="chart">
+        <canvas id="roundChart2" width="150" height="150"></canvas>
+      </div>
+      <div class="chart">
+        <canvas id="roundChart3" width="150" height="150"></canvas>
+      </div>
     </div>
   </div>
-</div>
-<div *ngIf="!isSusbscribed">
- <h2> Please choose any plan to access this service</h2>
-</div>
+  <div *ngIf="!isSusbscribed">
+    <h2>Please choose any plan to access this service</h2>
+  </div>
 </div>
