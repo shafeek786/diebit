@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -11,16 +12,30 @@ export class LoginGuard implements CanActivate {
 
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    console.log("check 1")
     const token = localStorage.getItem('token')
+
    console.log("login ay=uth")
     if (token) {
-      console.log("login ay=uth")
+      const decodedToken = jwtDecode(localStorage.getItem('token') as string)
 
-      // User is authenticated, redirect to home or another route
-      this.router.navigate(['/dashboard']);
-      return false; // Prevent access to the route
+      console.log("check 1")
+      const expTimestamp = decodedToken.exp; 
+      const currentTimestamp = Math.floor(Date.now() / 1000); 
+      if (expTimestamp && expTimestamp < currentTimestamp) {
+        console.log("check 2 ")
+        localStorage.removeItem('token')
+        this.router.navigate(['/login']);
+        return true;
+      } else {
+        this.router.navigate(['/dashboard']);
+        return false; 
+      }
+
+     
     } else {
-      return true; // Allow access to the route for non-authenticated users
+      console.log("check 3")
+      return true; 
     }
   }
 }

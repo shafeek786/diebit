@@ -122,10 +122,10 @@
 
 /* For medium devices (tablets) */
 @media only screen and (min-width: 600px) and (max-width: 992px) {
-  /* Add your styles for medium devices here */
 }
 
 /* For large devices (desktops) */
 @media only screen and (min-width: 992px) {
-  /* Add your styles for large devices here */
+
+  
 }

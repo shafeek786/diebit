@@ -62,10 +62,11 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/6.7.96/css/materialdesignicons.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css");
-
+@import url("../icons/avasta/css/style.css");
 @import url("../icons/flaticon/flaticon.css");
 @import url("../icons/flaticon-1/flaticon.css");
 @import url("../icons/flaticon-2/font/flaticon.css");
+@import url("../icons/icomoon/icomoon.css");
 @import url(../vendor/animate/animate.min.css);
 @import url(../vendor/aos/css/aos.min.css);
 @import url(../vendor/perfect-scrollbar/css/perfect-scrollbar.css);
@@ -220,7 +221,7 @@
 
 /*
  */
- :root {
+:root {
   --bs-blue: #5e72e4;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -565,7 +566,9 @@ legend {
 ::-webkit-inner-spin-button {
   height: auto; }
 
-
+[type="search"] {
+  outline-offset: -2px;
+  -webkit-appearance: textfield; }
 
 /* rtl:raw:
 [type="tel"],
@@ -1959,7 +1962,7 @@ textarea.form-control-lg {
   background-size: contain;
   border: 1px solid rgba(0, 0, 0, 0.25);
   appearance: none;
-  }
+  color-adjust: exact; }
   .form-check-input[type="checkbox"] {
     border-radius: 0.25em; }
   .form-check-input[type="radio"] {
@@ -40984,7 +40987,7 @@ table.dataTable.display tbody td {
   width: 60px;
   height: 60px;
   display: inline-block;
- 
+  background: url("../images/like.png");
   cursor: pointer;
   margin: -25px -15px; }
 
@@ -43123,27 +43126,3 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     background-color: transparent; }
     [data-theme-version="dark"] .footer .copyright p {
       color: #fff; }
-
-
-
-      /* sidebar scroll */
-      .deznav {
-        height: 100%; /* Set a height for the sidebar */
-        overflow-y: auto; /* Enable vertical scrolling */
-    }
-    
-    .deznav-scroll {
-        padding: 10px; /* Add padding for better aesthetics */
-    }
-    
-    /* Additional styling for your menu items */
-    .metismenu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .metismenu li {
-        margin-bottom: 10px;
-    }
-     

@@ -107,6 +107,8 @@ import { BloguserComponent } from './user/bloguser/bloguser.component';
 import { SubscribedusersComponent } from './trainer/subscribedusers/subscribedusers.component';
 import { TrainerWalletComponent } from './trainer/trainer-wallet/trainer-wallet.component';
 import { CheckComponent } from './user/check/check.component';
+import { Sidebar2Component } from './user/components/sidebar2/sidebar2.component';
+import { Sidebar3Component } from './user/components/sidebar3/sidebar3.component';
 const config:SocketIoConfig = {url:'http://localhost:8080',options:{}}
 
 
@@ -183,7 +185,9 @@ const config:SocketIoConfig = {url:'http://localhost:8080',options:{}}
     BloguserComponent,
     SubscribedusersComponent,
     TrainerWalletComponent,
-    CheckComponent
+    CheckComponent,
+    Sidebar2Component,
+    Sidebar3Component
     
   ],
   imports: [
