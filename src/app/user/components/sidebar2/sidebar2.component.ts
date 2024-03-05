@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
-import { navbarData } from 'src/app/trainer/components/trainer-sidebar/nav-data' 
+import { navbarData } from 'src/app/user/components/sidebar2/nav-data' 
 
 
 interface SidenavToggle{

@@ -2,32 +2,37 @@ export const navbarData = [
     {
       routeLink: '/dashboard/body',
       icon: 'flaticon-layout',
-      label: 'Dashboard',
+      label: 'Dashboardeee',
     },
     {
-      routeLink: '/profile',
-      icon: 'fa-regular fa-user',
-      label: 'Profile',
+      routeLink: '/dashboard/tracker',
+      icon: 'flaticon-monitor',
+      label: 'Tracker',
     },
     {
-      routeLink: '/trainer/blogs',
-      icon: 'fa-solid fa-blog',
-      label: 'Blogs',
+      routeLink: '/dashboard/trainers',
+      icon: 'flaticon-bar-chart-1',
+      label: 'Trainers',
     },
     {
-      routeLink: '/trainer/scheduletime',
-      icon: 'fa-regular fa-clock',
-      label: 'Schedule Time',
+      routeLink: '/dashboard/subscription',
+      icon: 'flaticon-web',
+      label: 'Susbscription',
     },
     {
-      routeLink: '/trainer/chat',
+      routeLink: '/dashboard/chat',
       icon: 'fa-regular fa-comments',
       label: 'Chat',
     },
     {
-      routeLink: '/trainer/payment',
-      icon: 'fa-solid fa-money-bill',
-      label: 'Payments',
+      routeLink: '/dashboard/videocall',
+      icon: 'fa-solid fa-headset',
+      label: 'Video Call',
+    },
+    {
+      routeLink: '/dashboard/blogs',
+      icon: 'fa-solid fa-blog',
+      label: 'Blogs',
     },
   ];
   
