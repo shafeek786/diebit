@@ -109,6 +109,7 @@ import { TrainerWalletComponent } from './trainer/trainer-wallet/trainer-wallet.
 import { CheckComponent } from './user/check/check.component';
 import { Sidebar2Component } from './user/components/sidebar2/sidebar2.component';
 import { Sidebar3Component } from './user/components/sidebar3/sidebar3.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 const config:SocketIoConfig = {url:'http://localhost:8080',options:{}}
 
 
@@ -187,7 +188,8 @@ const config:SocketIoConfig = {url:'http://localhost:8080',options:{}}
     TrainerWalletComponent,
     CheckComponent,
     Sidebar2Component,
-    Sidebar3Component
+    Sidebar3Component,
+    PageNotFoundComponent
     
   ],
   imports: [

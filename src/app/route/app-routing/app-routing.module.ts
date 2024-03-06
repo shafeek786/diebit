@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from 'src/app/guards/auth.guard';
 import { LoginGuard } from 'src/app/guards/login.guard';
+import { PageNotFoundComponent } from 'src/app/page-not-found/page-not-found.component';
 import { TrainerprofileComponent } from 'src/app/trainer/trainerprofile/trainerprofile.component';
 import { AboutComponent } from 'src/app/user/about/about.component';
 import { AvailableSlotsComponent } from 'src/app/user/available-slots/available-slots.component';
@@ -51,7 +52,8 @@ const routes: Routes =  [
   { path:'videocall/:trainerId/:role', component:VideocallComponent, canActivate:[authGuard]},
   { path: 'otp', component:OtpComponent},
   { path: 'forgotpassword', component:ForgetPasswordComponent},
-  { path: 'resetpassword', component:ResetpasswordComponent}
+  { path: 'resetpassword', component:ResetpasswordComponent},
+  { path:'**', component:PageNotFoundComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
